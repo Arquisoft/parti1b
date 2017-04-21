@@ -1,4 +1,4 @@
-package asw.DBManagement_original.persistence;
+package asw.dto.DBManagement_original.persistence;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,7 +8,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import asw.DBManagement_original.model.Ciudadano;
+import asw.dto.DBManagement_original.model.Ciudadano;
 
 @Component
 public class DatabaseLoader {

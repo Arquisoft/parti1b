@@ -11,12 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import asw.model.CitizenDB;
-import asw.model.Comment;
-import asw.model.Suggestion;
-import asw.model.VoteComment;
-import asw.model.VoteSuggestion;
-import asw.services.SuggestionService;
+import asw.dto.model.Suggestion;
+import asw.dto.model.VoteSuggestion;
+import asw.dto.model.CitizenDB;
+import asw.dto.model.Comment;
+
+
 
 @Scope("session")
 @Controller

@@ -16,14 +16,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import asw.model.CitizenDB;
-import asw.model.Comment;
-import asw.model.Suggestion;
-import asw.services.CitizenDBService;
-import asw.services.CommentsService;
-import asw.services.SuggestionService;
-import asw.services.VoteCommentService;
-import asw.services.VoteSuggestionService;
+import asw.dto.model.CitizenDB;
+import asw.dto.services.CitizenDBService;
+import asw.dto.services.CommentsService;
+import asw.dto.services.SuggestionService;
+import asw.dto.services.VoteCommentService;
+import asw.dto.services.VoteSuggestionService;
+import asw.dto.model.Suggestion;
+import asw.dto.model.Comment;
+
+
 
 
 @Scope("session")

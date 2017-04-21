@@ -1,10 +1,13 @@
-package asw.model;
+package asw.dto.model;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
+
+import asw.dto.model.Comment;
+import asw.dto.model.Suggestion;
 
 /**
  * Clase que adapta los ciudadanos creados para su posterior insercion en la

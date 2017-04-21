@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import asw.dto.DBManagement_original.GetParticipant;
 import asw.dto.DBManagement_original.model.Ciudadano;
 import asw.dto.DBManagement_original.persistence.CiudadanoRepository;
+import asw.participants.acceso.ParticipantsLogin;
 
 @Component
 public class GetParticipantDB implements GetParticipant{

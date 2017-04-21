@@ -1,16 +1,16 @@
 package asw.factory;
 
 
-import asw.services.CitizenDBService;
-import asw.services.CommentsService;
-import asw.services.SuggestionService;
-import asw.services.VoteCommentService;
-import asw.services.VoteSuggestionService;
-import asw.services.impl.CitizenDBServiceImpl;
-import asw.services.impl.CommentServiceImpl;
-import asw.services.impl.SuggestionServiceImpl;
-import asw.services.impl.VoteCommentServiceImpl;
-import asw.services.impl.VoteSuggestionServiceImpl;
+import asw.dto.services.CitizenDBService;
+import asw.dto.services.CommentsService;
+import asw.dto.services.SuggestionService;
+import asw.dto.services.VoteCommentService;
+import asw.dto.services.VoteSuggestionService;
+import asw.dto.services.impl.CitizenDBServiceImpl;
+import asw.dto.services.impl.CommentServiceImpl;
+import asw.dto.services.impl.SuggestionServiceImpl;
+import asw.dto.services.impl.VoteCommentServiceImpl;
+import asw.dto.services.impl.VoteSuggestionServiceImpl;
 
 public class Services {
 	

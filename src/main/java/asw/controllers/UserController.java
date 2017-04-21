@@ -9,13 +9,15 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import asw.model.Comment;
-import asw.model.Suggestion;
-import asw.services.CitizenDBService;
-import asw.services.CommentsService;
-import asw.services.SuggestionService;
-import asw.services.VoteCommentService;
-import asw.services.VoteSuggestionService;
+import asw.dto.services.CitizenDBService;
+import asw.dto.services.CommentsService;
+import asw.dto.services.SuggestionService;
+import asw.dto.services.VoteCommentService;
+import asw.dto.services.VoteSuggestionService;
+import asw.dto.model.Comment;
+import asw.dto.model.Suggestion;
+
+
 
 @Scope("session")
 @Controller

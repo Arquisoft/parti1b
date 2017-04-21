@@ -1,4 +1,4 @@
-package asw.model;
+package asw.dto.model;
 
 import java.util.Calendar;
 import java.util.Date;

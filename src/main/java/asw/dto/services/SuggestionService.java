@@ -1,9 +1,9 @@
-package asw.services;
+package asw.dto.services;
 
 import java.util.List;
 
-import asw.model.CitizenDB;
-import asw.model.Suggestion;
+import asw.dto.model.CitizenDB;
+import asw.dto.model.Suggestion;
 
 public interface SuggestionService {
 

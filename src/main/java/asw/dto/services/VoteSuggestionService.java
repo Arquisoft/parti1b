@@ -1,11 +1,11 @@
-package asw.services;
+package asw.dto.services;
 
 import java.util.List;
 
-import asw.model.CitizenDB;
-import asw.model.Suggestion;
-import asw.model.VoteSuggestion;
-import asw.model.key.VoteSuggestionKey;
+import asw.dto.model.CitizenDB;
+import asw.dto.model.Suggestion;
+import asw.dto.model.VoteSuggestion;
+import asw.dto.model.key.VoteSuggestionKey;
 
 public interface VoteSuggestionService {
 

@@ -1,6 +1,6 @@
-package asw.services;
+package asw.dto.services;
 
-import asw.model.CitizenDB;
+import asw.dto.model.CitizenDB;
 
 public interface CitizenDBService {
 

@@ -1,4 +1,4 @@
-package asw.model;
+package asw.dto.model;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -16,7 +16,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import asw.model.key.CommentKey;
+import asw.dto.model.key.CommentKey;
+import asw.dto.model.Suggestion;
 
 @Entity
 @IdClass(CommentKey.class)

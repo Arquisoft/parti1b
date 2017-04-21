@@ -1,7 +1,7 @@
-package asw.DBManagement_original;
+package asw.dto.DBManagement_original;
 
-import asw.DBManagement_original.model.Ciudadano;
-import asw.participants_original.acceso.ParticipantsLogin;
+import asw.dto.DBManagement_original.model.Ciudadano;
+import asw.participants.acceso.ParticipantsLogin;
 
 /**
  * 

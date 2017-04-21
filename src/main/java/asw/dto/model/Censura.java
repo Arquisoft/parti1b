@@ -1,6 +1,9 @@
-package asw.model;
+package asw.dto.model;
 
 import java.util.ArrayList;
+
+import asw.dto.model.Comment;
+import asw.dto.model.Suggestion;
 
 public class Censura {
 

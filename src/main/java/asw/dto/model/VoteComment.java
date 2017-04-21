@@ -1,4 +1,4 @@
-package asw.model;
+package asw.dto.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +8,7 @@ import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import asw.model.key.VoteCommentKey;
+import asw.dto.model.key.VoteCommentKey;
 
 @Entity
 @IdClass(VoteCommentKey.class)

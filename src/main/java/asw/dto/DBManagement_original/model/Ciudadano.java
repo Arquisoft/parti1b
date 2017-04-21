@@ -1,4 +1,4 @@
-package asw.DBManagement_original.model;
+package asw.dto.DBManagement_original.model;
 
 import java.util.Date;
 

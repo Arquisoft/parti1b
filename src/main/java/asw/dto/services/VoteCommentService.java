@@ -1,11 +1,11 @@
-package asw.services;
+package asw.dto.services;
 
 import java.util.List;
 
-import asw.model.CitizenDB;
-import asw.model.Comment;
-import asw.model.VoteComment;
-import asw.model.key.VoteCommentKey;
+import asw.dto.model.CitizenDB;
+import asw.dto.model.Comment;
+import asw.dto.model.VoteComment;
+import asw.dto.model.key.VoteCommentKey;
 
 
 public interface VoteCommentService {

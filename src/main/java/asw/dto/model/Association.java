@@ -1,6 +1,10 @@
-package asw.model;
+package asw.dto.model;
 
 import java.util.Set;
+
+import asw.dto.model.CitizenDB;
+import asw.dto.model.Suggestion;
+import asw.dto.model.Comment;
 
 public class Association {
 	public static class Comentar {
