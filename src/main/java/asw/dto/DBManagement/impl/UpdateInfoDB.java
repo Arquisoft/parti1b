@@ -1,12 +1,13 @@
-package asw.dto.DBManagement_original.impl;
+package asw.dto.DBManagement.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import asw.dto.DBManagement_original.model.Ciudadano;
+import asw.DBManagement_original.model.CiudadanoTest;
+import asw.dto.DBManagement.ChangePassword;
+import asw.dto.DBManagement.UpdateInfo;
+import asw.dto.DBManagement.model.Ciudadano;
 import asw.dto.DBManagement.persistence.CiudadanoRepository;
-import asw.dto.DBManagement_original.UpdateInfo;
-
 
 
 @Component
@@ -18,7 +19,7 @@ public class UpdateInfoDB implements UpdateInfo {
 
 	@Override
 	public boolean UpdateCitizen(Ciudadano ciudadano) {
-		Ciudadano citizen  =repositorio.save(ciudadano);
+		Ciudadano citizen= repositorio.save(ciudadano);
 		return citizen.equals(ciudadano);
 	}
 

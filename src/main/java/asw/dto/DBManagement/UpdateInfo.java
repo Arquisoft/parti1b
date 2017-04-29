@@ -1,7 +1,6 @@
-package asw.dto.DBManagement_original;
+package asw.dto.DBManagement;
 
-import asw.dto.DBManagement_original.model.Ciudadano;
-import asw.participants.acceso.ChangePassword;
+import asw.dto.DBManagement.model.Ciudadano;
 
 /**
  * 
