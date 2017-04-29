@@ -3,11 +3,10 @@ package asw.dto.DBManagement.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import asw.DBManagement_original.model.CiudadanoTest;
-import asw.dto.DBManagement.ChangePassword;
 import asw.dto.DBManagement.UpdateInfo;
 import asw.dto.DBManagement.model.Ciudadano;
 import asw.dto.DBManagement.persistence.CiudadanoRepository;
+import asw.participants.acceso.ChangePassword;
 
 
 @Component
@@ -35,4 +34,5 @@ public class UpdateInfoDB implements UpdateInfo {
 		return citizen;
 	}
 
+	
 }

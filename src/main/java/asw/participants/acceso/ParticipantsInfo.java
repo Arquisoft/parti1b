@@ -8,8 +8,9 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import asw.DBManagement.model.Ciudadano;
 import org.springframework.stereotype.Component;
+
+import asw.dto.DBManagement.model.Ciudadano;
 
 @XmlRootElement(name = "ParticipantInfo")
 public class ParticipantsInfo {

@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import asw.DBManagement.UpdateInfo;
-import asw.DBManagement.impl.UpdateInfoDB;
-import asw.DBManagement.model.Ciudadano;
+import asw.dto.DBManagement.UpdateInfo;
+import asw.dto.DBManagement.impl.UpdateInfoDB;
+import asw.dto.DBManagement.model.Ciudadano;
 import asw.participants.acceso.errores.HTTP404Exception;
 
 @RestController
