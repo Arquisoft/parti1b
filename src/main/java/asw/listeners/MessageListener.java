@@ -95,7 +95,7 @@ public class MessageListener implements ApplicationEventPublisherAware{
 			//Sugerencia sug = sugRep.findOne(comentario.getSugerencia().getId());
 			//sug.setVotos(sug.getVotos()+1);
 			//sugRep.save(sug);
-			publisher.publishEvent(new UpvoteEvent(comentario.getSugerencia().getTitulo(), comentario.getSugerencia().getVotos()+1));
+			publisher.publishEvent(new VoteEvent(comentario.getSugerencia().getTitulo()));
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -109,17 +109,33 @@ public class MessageListener implements ApplicationEventPublisherAware{
         logger.info("New message received: \"" + data + "\"");
     }
     
-    public class UpvoteEvent{
+    @KafkaListener( topics = KafkaTopics.DOWNVOTE_SUGERENCE)
+    public void listenDesacuerdo(String data){
+    	try {
+			Comentario comentario = mapper.readValue(data, Comentario.class);
+			logger.info("*****************\n"+"Desacuerdo: "+comentario.getSugerencia().getTitulo());
+			publisher.publishEvent(new VoteEvent(comentario.getSugerencia().getTitulo()));
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        logger.info("New message received: \"" + data + "\"");
+    }
+    
+    public class VoteEvent{
     	private String titulo;
-    	private int votos;
     	
-    	public UpvoteEvent(String titulo, int votos){
+    	public VoteEvent(String titulo){
     		this.titulo = titulo;
-    		this.votos = votos;
     	}
     	
     	public String getTitulo(){ return this.titulo; }
-    	public int getVotos(){ return this.votos; }
     }
     
     @Override

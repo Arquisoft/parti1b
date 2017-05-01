@@ -61,7 +61,20 @@
 				     break;
 				    }
 			 }
-
+		 }
+		 else if( sugerence.tipo == "downvote"){
+			 var ac = document.getElementsByYagName("tr");
+			 for (let elem of ac){
+				 var celdas = elem.children;      
+				 if(celdas[0].textContent === sugerence.title){
+					 var value = parseInt(celdas[2].textContent);		
+					 window.console.log(" El valor "+celdas[2].textContent+" el value "+value );
+				
+					 celdas[2].textContent = value-1;
+				    
+				     break;
+				    }
+			 }
 		 }
 	 });
 	 

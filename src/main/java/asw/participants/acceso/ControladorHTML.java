@@ -25,7 +25,7 @@ import asw.dto.DBManagement.model.Sugerencia;
 import asw.dto.DBManagement.persistence.CiudadanoRepository;
 import asw.dto.DBManagement.persistence.SugerenciaRepository;
 import asw.estadistica.EstadisticaService;
-import asw.listeners.MessageListener.UpvoteEvent;
+import asw.listeners.MessageListener.VoteEvent;
 
 @Controller
 public class ControladorHTML {
@@ -141,9 +141,16 @@ public class ControladorHTML {
 	
 	@RequestMapping( value = "/upvoteSugerence")
 	@EventListener
-	public void upvoteSugerence(UpvoteEvent data){
-		SseEventBuilder upvoteSugerenceEvent = SseEmitter.event().name("evento").data("{ \"tipo\": \"upvote\" , \"title\":\"" + data.getTitulo() + "\" , \"votes\": \""+ (data.getVotos()+1)+ "\" }");
+	public void upvoteSugerence(VoteEvent data){
+		SseEventBuilder upvoteSugerenceEvent = SseEmitter.event().name("evento").data("{ \"tipo\": \"upvote\" , \"title\":\"" + data.getTitulo() + "\" }");
 		sendEvent(upvoteSugerenceEvent);
+	}
+	
+	@RequestMapping( value = "/downvoteSugerence")
+	@EventListener
+	public void downvoteSugerence(VoteEvent data){
+		SseEventBuilder downvoteSugerenceEvent = SseEmitter.event().name("evento").data("{ \"tipo\": \"downvote\" , \"title\":\"" + data.getTitulo() + "\" }");
+		sendEvent(downvoteSugerenceEvent);
 	}
 	
 	private void sendEvent(SseEventBuilder event){
