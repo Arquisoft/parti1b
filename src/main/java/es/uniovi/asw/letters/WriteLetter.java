@@ -2,7 +2,8 @@ package es.uniovi.asw.letters;
 
 import java.io.IOException;
 
-import es.uniovi.asw.CitizenDB;
+import asw.dto.model.CitizenDB;
+
 
 /**
  * Interfaz que implementarán los distintos algoritmos para escribir una las diferentes cartas 

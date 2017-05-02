@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import asw.dto.model.CitizenDB;
 import es.uniovi.asw.dbupdate.Database;
 import es.uniovi.asw.parser.RListExcel;
 import es.uniovi.asw.parser.ReadList;

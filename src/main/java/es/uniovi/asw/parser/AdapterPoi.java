@@ -13,7 +13,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import es.uniovi.asw.CitizenDB;
+import asw.dto.model.CitizenDB;
+
 
 
 /**

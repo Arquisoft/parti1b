@@ -8,6 +8,7 @@ import java.util.Date;
 
 import org.junit.Test;
 
+import asw.dto.model.CitizenDB;
 import es.uniovi.asw.parser.CheckCitizen;
 
 
@@ -24,21 +25,21 @@ public class CheckCitizenTest {
 		SimpleDateFormat d = new SimpleDateFormat("dd-MM-yy");
 		Date date =  d.parse("01-03-1996");
 		CitizenDB citizenDBOk  = new CitizenDB("Nombre","Apellidos","email@gmail.com",date,
-				"Calle","España","12345678A");
+				"Calle","España","12345678A", "");
 		CitizenDB citizenDBOkFieldEmpty  = new CitizenDB("","Apellidos","email@gmail.com",date,
-				"Calle","España","12345678A");
+				"Calle","España","12345678A", "");
 		CitizenDB citizenDBErrorEmail  = new CitizenDB("Nombre","Apellidos","emailgmail.com",date,
-				"Calle","España","12345678A");
+				"Calle","España","12345678A", "");
 		CitizenDB citizenDBNullBirtday  = new CitizenDB("Nombre","Apellidos","email@gmail.com",null,
-				"Calle","España","12345678A");
+				"Calle","España","12345678A", "");
 		CitizenDB citizenDBErrorDNI  = new CitizenDB("Nombre","Apellidos","email@gmail.com",date,
-				"Calle","España","1234578A");
+				"Calle","España","1234578A", "");
 		CitizenDB citizenDBApellidosVacio  = new CitizenDB("Nombre","","email@gmail.com",date,
-				"Calle","España","12345678A");
+				"Calle","España","12345678A", "");
 		CitizenDB citizenDBDireccionVacia  = new CitizenDB("Nombre","Apellidos","email@gmail.com",date,
-				"","España","12345678A");
+				"","España","12345678A", "");
 		CitizenDB citizenDBNacionalidadVacia  = new CitizenDB("Nombre","Apellidos","email@gmail.com",date,
-				"Calle","","12345678A");
+				"Calle","","12345678A", "");
 		
 		
 		assertTrue(checkCitizen.checkCitizenInformation(citizenDBOk));
@@ -127,7 +128,7 @@ public class CheckCitizenTest {
 		SimpleDateFormat d = new SimpleDateFormat("dd-MM-yy");
 		Date date =  d.parse("01-03-1996");
 		CitizenDB citizenDBOk  = new CitizenDB("Nombre","Apellidos","email@gmail.com",date,
-				"Calle","España","12345678A");
+				"Calle","España","12345678A","");
 		String correctToString = "[Nombre: " +"Nombre"+"] [Apellido: "+"Apellidos"+"] [E-Mail: "+"email@gmail.com"
 				+"] [Cumpleaños: "+date+"] [Direccion: "+"Calle"
 				+"] [Nacionalidad: "+"España"+"] [DNI: "+"12345678A"+"]";
@@ -145,7 +146,7 @@ public class CheckCitizenTest {
 		SimpleDateFormat d = new SimpleDateFormat("dd-MM-yy");
 		Date date =  d.parse("01-03-1996");
 		CitizenDB citizenDBOk  = new CitizenDB("Nombre","Apellidos","email@gmail.com",date,
-				"Calle","España","12345678A");
+				"Calle","España","12345678A","");
 		
 		assertEquals(-1867378596, citizenDBOk.hashCode());
 	}
@@ -155,11 +156,11 @@ public class CheckCitizenTest {
 		SimpleDateFormat d = new SimpleDateFormat("dd-MM-yy");
 		Date date =  d.parse("01-03-1996");
 		CitizenDB citizenDBOk  = new CitizenDB("Nombre","Apellidos","email@gmail.com",date,
-				"Calle","España","12345678A");
+				"Calle","España","12345678A", "");
 		CitizenDB citizenDBOk1  = new CitizenDB("Nombre","Apellidos","email@gmail.com",date,
-				"Calle","España","12345678A");
+				"Calle","España","12345678A", "");
 		CitizenDB citizenDBOk2  = new CitizenDB("Nombre","Apellidos","email@gmail.com",date,
-				"Calle","España","12345679A");
+				"Calle","España","12345679A","");
 		
 		assertTrue(citizenDBOk.equals(citizenDBOk1));
 		assertFalse(citizenDBOk.equals(citizenDBOk2));

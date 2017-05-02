@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import es.uniovi.asw.CitizenDB;
+import asw.dto.model.CitizenDB;
 import es.uniovi.asw.parser.CheckCitizen;
 import es.uniovi.asw.parser.GenerationPassword;
 

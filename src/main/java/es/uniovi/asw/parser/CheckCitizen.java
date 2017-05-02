@@ -1,9 +1,10 @@
 package es.uniovi.asw.parser;
 
 import java.util.Date;
+
+import asw.dto.model.CitizenDB;
 import es.uniovi.asw.ReportWriter.WriteReport;
 import es.uniovi.asw.dbupdate.WReportR;
-import es.uniovi.asw.CitizenDB;
 
 
 /**

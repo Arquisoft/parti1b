@@ -1,9 +1,9 @@
 package es.uniovi.asw.parser;
 
-import java.sql.SQLException;
 import java.util.List;
 
-import es.uniovi.asw.CitizenDB;
+import asw.dto.model.CitizenDB;
+
 
 public interface ReadList {
 	

@@ -5,7 +5,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-import es.uniovi.asw.CitizenDB;
+import asw.dto.model.CitizenDB;
+
 
 
 public class DefaultLetter extends AbstractWriteLetter{

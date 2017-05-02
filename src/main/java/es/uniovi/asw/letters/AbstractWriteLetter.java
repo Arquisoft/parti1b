@@ -1,8 +1,9 @@
 package es.uniovi.asw.letters;
 
-import es.uniovi.asw.CitizenDB;
 import java.io.IOException;
 import java.util.List;
+
+import asw.dto.model.CitizenDB;
 
 public abstract class AbstractWriteLetter implements WriteLetter {
 

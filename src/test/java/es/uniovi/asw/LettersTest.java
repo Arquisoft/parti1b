@@ -14,6 +14,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import asw.dto.model.CitizenDB;
 import es.uniovi.asw.parser.GenerationPassword;
 import es.uniovi.asw.letters.*;
 
@@ -98,7 +99,7 @@ public class LettersTest {
 			writer = new PDFLetter(citizens,"prueba");
 			writer.setPath("/ruta/Inventada");
 			assertEquals(writer.getPath(),"/ruta/Inventada");
-			writer.write(new CitizenDB("Juan","Rodriguez Garcia","juan@gmail.com",new Date(1234),"C/la luna","España","71654234J"));
+			writer.write(new CitizenDB("Juan","Rodriguez Garcia","juan@gmail.com",new Date(1234),"C/la luna","España","71654234J", ""));
 			exception.expect(FileNotFoundException.class);
 		}
 		catch(FileNotFoundException e){
@@ -116,7 +117,7 @@ public class LettersTest {
 			writer = new WordLetter(citizens,"prueba");
 			writer.setPath("/ruta/Inventada");
 			assertEquals(writer.getPath(),"/ruta/Inventada");
-			writer.write(new CitizenDB("Juan","Rodriguez Garcia","juan@gmail.com",new Date(1234),"C/la luna","España","71654234J"));
+			writer.write(new CitizenDB("Juan","Rodriguez Garcia","juan@gmail.com",new Date(1234),"C/la luna","España","71654234J", ""));
 			exception.expect(FileNotFoundException.class);
 		}
 		catch (IOException e) {
@@ -125,11 +126,11 @@ public class LettersTest {
 	}
 	
 	private void createUsers(){
-		citizens.add(new CitizenDB("Juan","Rodriguez Garcia","juan@gmail.com",new Date(1234),"C/la luna","España","71654234J"));
-		citizens.add(new CitizenDB("Marta","Rodriguez Garcia","marta@gmail.com",new Date(1234),"C/paraiso","España","71654233J"));
-		citizens.add(new CitizenDB("Elena","Perez Garcia","elena@gmail.com",new Date(1234),"C/paraiso","España","71644233G"));
-		citizens.add(new CitizenDB("Daniel","Perez Perez","dani@gmail.com",new Date(1234),"C/Lugones","España","73334233K"));
-		citizens.add(new CitizenDB("Jose","Perez Garcia","jose@gmail.com",new Date(1234),"C/paraiso","España","11144233G"));
+		citizens.add(new CitizenDB("Juan","Rodriguez Garcia","juan@gmail.com",new Date(1234),"C/la luna","España","71654234J",""));
+		citizens.add(new CitizenDB("Marta","Rodriguez Garcia","marta@gmail.com",new Date(1234),"C/paraiso","España","71654233J",""));
+		citizens.add(new CitizenDB("Elena","Perez Garcia","elena@gmail.com",new Date(1234),"C/paraiso","España","71644233G",""));
+		citizens.add(new CitizenDB("Daniel","Perez Perez","dani@gmail.com",new Date(1234),"C/Lugones","España","73334233K",""));
+		citizens.add(new CitizenDB("Jose","Perez Garcia","jose@gmail.com",new Date(1234),"C/paraiso","España","11144233G",""));
 		for(CitizenDB c:citizens)
 			c.setPassword(new GenerationPassword().passwordGenerator());
 	}

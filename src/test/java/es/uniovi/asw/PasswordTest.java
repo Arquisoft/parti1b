@@ -8,6 +8,7 @@ import java.util.Date;
 
 import org.junit.Test;
 
+import asw.dto.model.CitizenDB;
 import es.uniovi.asw.parser.GenerationPassword;
 
 
@@ -25,7 +26,7 @@ public class PasswordTest {
 		SimpleDateFormat d = new SimpleDateFormat("dd-MM-yy");
 		Date date =  d.parse("01-03-1996");
 		CitizenDB citizenDB  = new CitizenDB("Nombre","Apellidos","email@gmail.com",date,
-					"Calle","España","12345678A");
+					"Calle","España","12345678A","");
 		
 		assertNull(citizenDB.getPassword());
 		

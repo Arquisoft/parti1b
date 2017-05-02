@@ -3,7 +3,8 @@ package es.uniovi.asw.parser;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import es.uniovi.asw.CitizenDB;
+import asw.dto.model.CitizenDB;
+
 
 public class RListExcel extends RList {
 	

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import es.uniovi.asw.CitizenDB;
+import asw.dto.model.CitizenDB;
 import es.uniovi.asw.letters.DefaultLetter;
 import es.uniovi.asw.letters.PDFLetter;
 import es.uniovi.asw.letters.WordLetter;
