@@ -44,7 +44,7 @@ public class GetParticipantTest {
 
         try {
             bornDate = new SimpleDateFormat("yyyy-MM-dd").parse("1970-01-01");
-            johnDoe = new Ciudadano("John", "Doe", "john@doe.net", bornDate, "Phobos", "Martian", "123456789", "password");
+            johnDoe = new Ciudadano("John", "Doe", "john@doe.net", bornDate, "Phobos", "Martian", "123456789", "password", false);
             johnDoeLogin = new ParticipantsLogin(johnDoe.getEmail(),johnDoe.getPassword());
             repository.save(johnDoe);
 

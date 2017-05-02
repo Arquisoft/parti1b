@@ -1,6 +1,8 @@
 package asw.DBManagement.model;
 
 import asw.Application;
+import asw.dto.DBManagement.model.Ciudadano;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

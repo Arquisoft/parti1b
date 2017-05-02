@@ -26,7 +26,7 @@ public class VoteSuggestionServiceImpl implements VoteSuggestionService {
 		return voteSuggestionServiceImpl.findByCitizenDB(citizen);
 	}
 
-	@Override
+	@Override 
 	public VoteSuggestion findByVoteCommentKey(VoteSuggestionKey voteSuggestionKey) {
 		return voteSuggestionServiceImpl.findByVoteCommentKey(voteSuggestionKey);
 	}

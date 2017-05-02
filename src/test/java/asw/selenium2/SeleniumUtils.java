@@ -1,4 +1,4 @@
-package selenium2;
+package asw.selenium2;
 
 import java.util.List;
 import java.util.NoSuchElementException;

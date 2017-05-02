@@ -1,8 +1,8 @@
 package asw.participants_original.acceso;
 
 import asw.Application;
-import asw.DBManagement_original.model.Ciudadano;
-import asw.participants_original.acceso.ParticipantsInfo;
+import asw.dto.DBManagement.model.Ciudadano;
+import asw.participants.acceso.ParticipantsInfo;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -52,7 +52,7 @@ public class ParticipantsInfoTest {
 
     @Test
     public void testConstructor() throws  Exception {
-        assertThat(new ParticipantsInfo(new Ciudadano(firstName,lastName,email,bornDate,nif,"","","")));
+        assertThat(new ParticipantsInfo(new Ciudadano(firstName,lastName,email,bornDate,nif,"","","", false)));
     }
 
     @Test
