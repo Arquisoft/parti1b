@@ -1,6 +1,6 @@
 package asw.dto.DBManagement;
 
-import asw.dto.DBManagement.model.Ciudadano;
+import asw.dto.model.CitizenDB;
 import asw.participants.acceso.ParticipantsLogin;
 
 /**
@@ -8,7 +8,7 @@ import asw.participants.acceso.ParticipantsLogin;
  */
 
 public interface GetParticipant {
-    public Ciudadano getCiudadano(String email);
+    public CitizenDB getCiudadano(String email);
 
-    public Ciudadano getCiudadano(ParticipantsLogin participante);
+    public CitizenDB getCiudadano(ParticipantsLogin participante);
 }

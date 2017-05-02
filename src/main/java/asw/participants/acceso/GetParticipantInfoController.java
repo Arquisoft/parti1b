@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import asw.dto.DBManagement.GetParticipant;
+import asw.dto.model.CitizenDB;
 import asw.participants.acceso.errores.HTTP404Exception;
 
 @RestController
@@ -48,7 +49,7 @@ public class GetParticipantInfoController implements GetParticipantInfo{
         if(!mat.matches())
         	throw new HTTP404Exception("El email no cumple con el formato requerido");
 		
-		Ciudadano ci = getParticipantDB.getCiudadano(info);
+		CitizenDB ci = getParticipantDB.getCiudadano(info);
 		
 		
 		if (ci == null) {

@@ -2,6 +2,7 @@ package asw.DBManagement.model;
 
 import asw.Application;
 import asw.dto.DBManagement.model.Ciudadano;
+import asw.dto.model.CitizenDB;
 
 import org.junit.After;
 import org.junit.Before;
@@ -23,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Transactional
 public class CiudadanoTest {
 
-    private Ciudadano johnDoe;
+    private CitizenDB johnDoe;
 
     private String nombre;
     private String apellidos;
@@ -53,7 +54,7 @@ public class CiudadanoTest {
         dni = "12345678X";
         password = "password";
 
-        johnDoe = new Ciudadano(nombre, apellidos, email, bornDate, residencia, nacionalidad, dni, password, false);
+        johnDoe = new CitizenDB(nombre, apellidos, email, bornDate, residencia, nacionalidad, dni, password, "ADMIN");
     }
 
     @After

@@ -15,6 +15,8 @@ public interface VoteCommentRepository extends CrudRepository<VoteComment, Long>
 
 	List<VoteComment> findByCitizenDB(CitizenDB citizen);
 
+	VoteComment findByVoteCommentKey(VoteCommentKey voteCommentKey);
+
 	//VoteComment findByVoteCommentKey(VoteCommentKey voteCommentKey); //No hay atributo voteCommentKey ¿?
 	
 }

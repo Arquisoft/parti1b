@@ -15,6 +15,8 @@ public interface VoteSuggestionRepository  extends CrudRepository<VoteSuggestion
 
 	List<VoteSuggestion> findByCitizenDB(CitizenDB citizen);
 
+	VoteSuggestion findByVoteCommentKey(VoteSuggestionKey voteSuggestionKey);
+
 	//VoteSuggestion findByVoteCommentKey(VoteSuggestionKey voteSuggestionKey); //No hay campo voteSuggKey ¿?
 
 }
