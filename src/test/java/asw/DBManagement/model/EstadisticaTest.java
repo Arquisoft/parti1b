@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import asw.Application;
+import asw.dto.DBManagement.model.Estadistica;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)

@@ -1,7 +1,7 @@
 package asw.DBManagement_original.model;
 
 import asw.Application;
-import asw.DBManagement_original.model.Ciudadano;
+import asw.dto.DBManagement.model.Ciudadano;
 
 import org.junit.After;
 import org.junit.Before;
@@ -53,7 +53,7 @@ public class CiudadanoTest {
         dni = "12345678X";
         password = "password";
 
-        johnDoe = new Ciudadano(nombre, apellidos, email, bornDate, residencia, nacionalidad, dni, password);
+        johnDoe = new Ciudadano(nombre, apellidos, email, bornDate, residencia, nacionalidad, dni, password, false);
     }
 
     @After

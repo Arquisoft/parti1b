@@ -1,7 +1,9 @@
 package asw.DBManagement.persistence;
 
 import asw.Application;
-import asw.DBManagement.model.Ciudadano;
+import asw.dto.DBManagement.model.Ciudadano;
+import asw.dto.DBManagement.persistence.CiudadanoRepository;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -6,7 +6,7 @@ import asw.dto.services.CommentsService;
 import asw.dto.services.SuggestionService;
 import asw.dto.services.VoteCommentService;
 import asw.dto.services.VoteSuggestionService;
-import asw.dto.services.CitizenDBServiceImpl;
+import asw.dto.services.impl.CitizenDBServiceImpl;
 import asw.dto.services.impl.CommentServiceImpl;
 import asw.dto.services.impl.SuggestionServiceImpl;
 import asw.dto.services.impl.VoteCommentServiceImpl;
