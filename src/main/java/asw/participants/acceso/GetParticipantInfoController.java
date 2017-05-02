@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import asw.dto.DBManagement.GetParticipant;
-import asw.dto.DBManagement.model.Ciudadano;
 import asw.participants.acceso.errores.HTTP404Exception;
 
 @RestController

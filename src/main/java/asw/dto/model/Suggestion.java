@@ -32,6 +32,7 @@ public class Suggestion {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date suggestion_date;
 	
+	//private boolean aprobacion; ??
 	@ManyToOne
 	private CitizenDB citizenDB;
 	

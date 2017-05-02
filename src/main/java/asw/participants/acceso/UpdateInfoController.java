@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import asw.dto.DBManagement.UpdateInfo;
 import asw.dto.DBManagement.impl.UpdateInfoDB;
-import asw.dto.DBManagement.model.Ciudadano;
+import asw.dto.model.CitizenDB;
 import asw.participants.acceso.errores.HTTP404Exception;
 
 @RestController
@@ -40,7 +40,7 @@ public class UpdateInfoController {
 			throw new HTTP404Exception("No se han introducido todos los datos");
 		}
 		
-		Ciudadano ci = updateInfo.UpdateCitizen(info);
+		CitizenDB ci = updateInfo.UpdateCitizen(info);
 		
 		if (ci == null) {
 			throw new HTTP404Exception("Email o contraseña incorrectas");

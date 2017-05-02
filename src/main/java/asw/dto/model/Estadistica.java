@@ -1,4 +1,4 @@
-package asw.dto.DBManagement.model;
+package asw.dto.model;
 
 import java.util.Map;
 

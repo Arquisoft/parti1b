@@ -2,18 +2,20 @@ package asw.estadistica;
 
 import java.util.List;
 
-import asw.dto.DBManagement.model.Comentario;
-import asw.dto.DBManagement.model.Estadistica;
-import asw.dto.DBManagement.model.Sugerencia;
+import asw.dto.model.Comment;
+import asw.dto.model.Estadistica;
+import asw.dto.model.Suggestion;
+
+
 
 
 
 public interface EstadisticaService {
 
-	public Estadistica nuevaSugerencia(Sugerencia sugerencia);
+	public Estadistica nuevaSugerencia(Suggestion sugerencia);
 	
-	public List<Estadistica> listaPopularidadSugerencia(List<Sugerencia> sugerencia);
+	public List<Estadistica> listaPopularidadSugerencia(List<Suggestion> sugerencia);
 	
-	public Estadistica nuevoComentario(Comentario comentario, Estadistica estsdistica);
+	public Estadistica nuevoComentario(Comment comentario, Estadistica estsdistica);
 
 }

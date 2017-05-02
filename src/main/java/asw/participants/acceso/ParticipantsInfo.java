@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.springframework.stereotype.Component;
 
-import asw.dto.DBManagement.model.Ciudadano;
+import asw.dto.model.CitizenDB;
 
 @XmlRootElement(name = "ParticipantInfo")
 public class ParticipantsInfo {
@@ -34,16 +34,16 @@ public class ParticipantsInfo {
 	}
 	
 	
-	public ParticipantsInfo(Ciudadano ciudadano)
+	public ParticipantsInfo(CitizenDB ciudadano)
 	{
 		LocalDate hoy = LocalDate.now();   
-		 LocalDate nacimiento = ciudadano.getFechaNacimiento().toInstant().
+		 LocalDate nacimiento = ciudadano.getBirthday().toInstant().
 		           atZone(ZoneId.systemDefault()).toLocalDate(); 
-		this.firstName = ciudadano.getNombre();
-		this.lastName = ciudadano.getApellidos();
+		this.firstName = ciudadano.getName();
+		this.lastName = ciudadano.getSurname();
 		this.edad = ChronoUnit.YEARS.between(nacimiento, hoy);
-		this.nif = ciudadano.getDni();
-		this.email = ciudadano.getEmail();
+		this.nif = ciudadano.getDNI();
+		this.email = ciudadano.getMail();
 	}
 
 	@XmlElement

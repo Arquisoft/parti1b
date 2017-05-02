@@ -18,12 +18,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter.SseEventBuilder;
 
-import asw.dto.DBManagement.model.Ciudadano;
-import asw.dto.DBManagement.model.Comentario;
-import asw.dto.DBManagement.model.Estadistica;
-import asw.dto.DBManagement.model.Sugerencia;
-import asw.dto.DBManagement.persistence.CiudadanoRepository;
-import asw.dto.DBManagement.persistence.SugerenciaRepository;
+import asw.controllers.SuggestionController;
+import asw.dto.model.CitizenDB;
+import asw.dto.model.Comment;
+import asw.dto.model.Estadistica;
+import asw.dto.model.Suggestion;
+import asw.dto.repository.CitizenDBRepository;
+import asw.dto.repository.SuggestionRepository;
 import asw.estadistica.EstadisticaService;
 import asw.listeners.MessageListener.VoteEvent;
 
@@ -34,10 +35,10 @@ public class ControladorHTML {
 
 	
 	@Autowired
-	private CiudadanoRepository repositorio;
+	private CitizenDBRepository repositorio;
 	
 	@Autowired
-	private SugerenciaRepository sugRepos;
+	private SuggestionRepository sugRepos;
 	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -70,10 +71,10 @@ public class ControladorHTML {
 		//Comprobar los datos
 
 		try{
-			Ciudadano ciudadano = repositorio.findByEmail(email);
+			CitizenDB ciudadano = repositorio.findByMail(email);
 			if (ciudadano!= null)
 			{
-				if(!ciudadano.getEmail().equals(email))
+				if(!ciudadano.getMail().equals(email))
 				{
 					modelo.addAttribute("error", "Email no coincide.");
 					return "error";
@@ -86,7 +87,7 @@ public class ControladorHTML {
 				}
 
 				if(ciudadano != null){
-					if(ciudadano.isPrivilegios())
+					if(ciudadano.getType().equals("ADMIN"))
 						return this.popularidadSugerencia(parametros, modelo);
 					else
 						return "user";
@@ -108,14 +109,14 @@ public class ControladorHTML {
 	
 
 
-	public List<Estadistica> popularidadSugerencia(List<Sugerencia> sugerencia) {
+	public List<Estadistica> popularidadSugerencia(List<Suggestion> sugerencia) {
 		return estatService.listaPopularidadSugerencia(sugerencia);
 	}
 
 
 	@RequestMapping(path="/userPriv", method=RequestMethod.GET)
 	public String popularidadSugerencia(@RequestBody String parametros, Model modelo) {
-		List<Sugerencia> sugerencias = (List<Sugerencia>) sugRepos.findAll();
+		List<Suggestion> sugerencias = (List<Suggestion>) sugRepos.findAll();
 		List<Estadistica> estadisticas = estatService.listaPopularidadSugerencia(sugerencias);
 		modelo.addAttribute("estadisticas",estadisticas);
 		return "userPriv";
@@ -123,19 +124,19 @@ public class ControladorHTML {
 	
 	@RequestMapping( value = "/newSugerence")
 	@EventListener
-	public void newSugerence(Sugerencia data){
+	public void newSugerence(Suggestion data){
 		
 		System.out.println("Evento escuchado!");
-		SseEventBuilder newSugerenceEvent = SseEmitter.event().name("evento").data("{ \"tipo\": \"newSugerence\" , \"title\":\"" + data.getTitulo() + "\"}");
+		SseEventBuilder newSugerenceEvent = SseEmitter.event().name("evento").data("{ \"tipo\": \"newSugerence\" , \"title\":\"" + data.getTitle() + "\"}");
 		sendEvent(newSugerenceEvent);
 	}
 	
 	@RequestMapping( value = "/newComentary")
 	@EventListener
-	public void newComentary(Comentario data){
+	public void newComentary(Comment data){
 
 
-		SseEventBuilder newComentaryEvent = SseEmitter.event().name("evento").data("{ \"tipo\": \"newComentary\" ,  \"title\":\"" + data.getSugerencia().getTitulo() +"\" }");
+		SseEventBuilder newComentaryEvent = SseEmitter.event().name("evento").data("{ \"tipo\": \"newComentary\" ,  \"title\":\"" + data.getSuggestion().getTitle() +"\" }");
 		sendEvent(newComentaryEvent);
 	}
 	

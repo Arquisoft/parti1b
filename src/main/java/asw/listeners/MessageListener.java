@@ -11,10 +11,10 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import asw.dto.DBManagement.model.Comentario;
-import asw.dto.DBManagement.model.Sugerencia;
-import asw.dto.DBManagement.persistence.ComentarioRepository;
-import asw.dto.DBManagement.persistence.SugerenciaRepository;
+import asw.dto.model.Comment;
+import asw.dto.model.Suggestion;
+import asw.dto.repository.CommentRepository;
+import asw.dto.repository.SuggestionRepository;
 import asw.participants.acceso.ControladorHTML;
 
 import java.io.IOException;
@@ -33,10 +33,10 @@ public class MessageListener implements ApplicationEventPublisherAware{
     private ObjectMapper mapper;
 
     @Autowired
-    private SugerenciaRepository sugRep;
+    private SuggestionRepository sugRep;
 
     @Autowired
-    private ComentarioRepository comRep;
+    private CommentRepository comRep;
 
     private static final Logger logger = Logger.getLogger(MessageListener.class);
     private ApplicationEventPublisher publisher;
@@ -45,8 +45,8 @@ public class MessageListener implements ApplicationEventPublisherAware{
     public void listenSugerencias(String data) {
     	
     	try {
-			Sugerencia sugerencia = mapper.readValue(data, Sugerencia.class);
-			logger.info("*****************\n"+"Sugerencia: "+sugerencia.getTitulo());
+			Suggestion sugerencia = mapper.readValue(data, Suggestion.class);
+			logger.info("*****************\n"+"Sugerencia: "+sugerencia.getTitle());
 			sugRep.save(sugerencia);
 			publisher.publishEvent(sugerencia);
 		} catch (JsonParseException e) {
@@ -66,8 +66,8 @@ public class MessageListener implements ApplicationEventPublisherAware{
     public void listenComentarios(String data) {
     	
     	try {
-			Comentario comentario = mapper.readValue(data, Comentario.class);
-			logger.info("*****************\n"+"Comentario: "+comentario.getTexto());
+			Comment comentario = mapper.readValue(data, Comment.class);
+			logger.info("*****************\n"+"Comentario: "+comentario.getText());
 //			Comentario com =comentario;
 //			com.setSugerencia(null);
 //			comRep.save(com);
@@ -90,12 +90,12 @@ public class MessageListener implements ApplicationEventPublisherAware{
     @KafkaListener( topics = KafkaTopics.UPVOTE_SUGERENCE)
     public void listenApoyo(String data) {
     	try {
-			Comentario comentario = mapper.readValue(data, Comentario.class);
-			logger.info("*****************\n"+"Apoyo: "+comentario.getSugerencia().getTitulo());
+			Comment comentario = mapper.readValue(data, Comment.class);
+			logger.info("*****************\n"+"Apoyo: "+comentario.getSuggestion().getTitle());
 			//Sugerencia sug = sugRep.findOne(comentario.getSugerencia().getId());
 			//sug.setVotos(sug.getVotos()+1);
 			//sugRep.save(sug);
-			publisher.publishEvent(new VoteEvent(comentario.getSugerencia().getTitulo()));
+			publisher.publishEvent(new VoteEvent(comentario.getSuggestion().getTitle()));
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -112,9 +112,9 @@ public class MessageListener implements ApplicationEventPublisherAware{
     @KafkaListener( topics = KafkaTopics.DOWNVOTE_SUGERENCE)
     public void listenDesacuerdo(String data){
     	try {
-			Comentario comentario = mapper.readValue(data, Comentario.class);
-			logger.info("*****************\n"+"Desacuerdo: "+comentario.getSugerencia().getTitulo());
-			publisher.publishEvent(new VoteEvent(comentario.getSugerencia().getTitulo()));
+			Comment comentario = mapper.readValue(data, Comment.class);
+			logger.info("*****************\n"+"Desacuerdo: "+comentario.getSuggestion().getTitle());
+			publisher.publishEvent(new VoteEvent(comentario.getSuggestion().getTitle()));
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

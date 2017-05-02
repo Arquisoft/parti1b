@@ -7,22 +7,22 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import asw.dto.DBManagement.model.Comentario;
-import asw.dto.DBManagement.model.Estadistica;
-import asw.dto.DBManagement.model.Sugerencia;
+import asw.dto.model.Comment;
+import asw.dto.model.Estadistica;
+import asw.dto.model.Suggestion;
 import asw.estadistica.EstadisticaService;
 
 @Service("estadisticaService")
 public class EstadisticaServiceImpl implements EstadisticaService {
 
 	@Override
-	public Estadistica nuevaSugerencia(Sugerencia sugerencia) {
+	public Estadistica nuevaSugerencia(Suggestion sugerencia) {
 		Map<String, Integer> campos = new HashMap<>();
 		
 		campos.put("Comentarios",0);
-		campos.put("Apoyos",sugerencia.getVotos()*1);
+		campos.put("Apoyos",sugerencia.getNum_votes()*1);
 		
-		return new Estadistica(sugerencia.getTitulo(),campos);
+		return new Estadistica(sugerencia.getTitle(),campos);
 
 	}
 	
@@ -30,11 +30,11 @@ public class EstadisticaServiceImpl implements EstadisticaService {
 	
 
 	@Override
-	public List<Estadistica> listaPopularidadSugerencia(List<Sugerencia> sugerencia) {
+	public List<Estadistica> listaPopularidadSugerencia(List<Suggestion> sugerencia) {
 		
 		List<Estadistica> devuelto = new ArrayList<Estadistica>();
 		
-		for(Sugerencia su : sugerencia)
+		for(Suggestion su : sugerencia)
 		{
 			devuelto.add(this.nuevaSugerencia(su));
 		}
@@ -46,7 +46,7 @@ public class EstadisticaServiceImpl implements EstadisticaService {
 
 
 	@Override
-	public Estadistica nuevoComentario(Comentario comentario, Estadistica estadistica) {
+	public Estadistica nuevoComentario(Comment comentario, Estadistica estadistica) {
 		
 		estadistica.getCampos().put("Comentarios", estadistica.getCampos().get("Comentarios")+1);
 		

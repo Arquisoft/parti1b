@@ -1,9 +1,11 @@
 package asw.producers;
 
-import asw.dto.DBManagement.model.Comentario;
-import asw.dto.DBManagement.model.Sugerencia;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import asw.dto.model.Comment;
+import asw.dto.model.Suggestion;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -27,52 +29,49 @@ public class KafkaProducer {
     @Autowired
     private ObjectMapper mapper;
 
-    @Autowired
-    private RandomGenerator randomGenerator;
-
-    private Sugerencia sugerencia;
-    private Comentario comentario;
+    private Suggestion sugerencia;
+    private Comment comentario;
 
 
-    @Scheduled(fixedDelay = 30000)
-    public void sendNewSuggestion() {
-        String sugerenciaJSON = "";
-        sugerencia = randomGenerator.newSugerencia();
+//    @Scheduled(fixedDelay = 30000)
+//    public void sendNewSuggestion() {
+//        String sugerenciaJSON = "";
+//        sugerencia = randomGenerator.newSugerencia();
+//
+//        try {
+//            sugerenciaJSON = mapper.writeValueAsString(sugerencia);
+//            send("sugerencias", sugerenciaJSON);
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-        try {
-            sugerenciaJSON = mapper.writeValueAsString(sugerencia);
-            send("sugerencias", sugerenciaJSON);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Scheduled(fixedDelay = 11000)
-    public void sendNewComentario() {
-        String comentarioJSON = "";
-        comentario = randomGenerator.newComentario();
-
-        try {
-            comentarioJSON = mapper.writeValueAsString(comentario);
-            send("comentarios", comentarioJSON);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-    }
+//    @Scheduled(fixedDelay = 11000)
+//    public void sendNewComentario() {
+//        String comentarioJSON = "";
+//        comentario = randomGenerator.newComentario();
+//
+//        try {
+//            comentarioJSON = mapper.writeValueAsString(comentario);
+//            send("comentarios", comentarioJSON);
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
+//    }
     
-    @Scheduled(fixedDelay = 7000)
-    public void sendNewApoyo() {
-        String comentarioJSON = "";
-        comentario = randomGenerator.newComentario();
-        comentario.setTexto("");
-
-        try {
-            comentarioJSON = mapper.writeValueAsString(comentario);
-            send("apoyos", comentarioJSON);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-    }
+//    @Scheduled(fixedDelay = 7000)
+//    public void sendNewApoyo() {
+//        String comentarioJSON = "";
+//        comentario = randomGenerator.newComentario();
+//        comentario.setTexto("");
+//
+//        try {
+//            comentarioJSON = mapper.writeValueAsString(comentario);
+//            send("apoyos", comentarioJSON);
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public void send(String topic, String data) {
         ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic, data);

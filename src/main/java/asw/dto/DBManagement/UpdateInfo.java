@@ -1,6 +1,6 @@
 package asw.dto.DBManagement;
 
-import asw.dto.DBManagement.model.Ciudadano;
+import asw.dto.model.CitizenDB;
 import asw.participants.acceso.ChangePassword;
 
 /**
@@ -10,6 +10,6 @@ import asw.participants.acceso.ChangePassword;
  */
 public interface UpdateInfo{
 
-	public boolean UpdateCitizen(Ciudadano ciudadano);
-	public Ciudadano UpdateCitizen(ChangePassword info);
+	public boolean UpdateCitizen(CitizenDB ciudadano);
+	public CitizenDB UpdateCitizen(ChangePassword info);
 }

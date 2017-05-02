@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import asw.dto.DBManagement.UpdateInfo;
-import asw.dto.DBManagement.model.Ciudadano;
-import asw.dto.DBManagement.persistence.CiudadanoRepository;
+import asw.dto.model.CitizenDB;
+import asw.dto.repository.CitizenDBRepository;
 import asw.participants.acceso.ChangePassword;
 
 
@@ -14,18 +14,18 @@ public class UpdateInfoDB implements UpdateInfo {
 
 
 	@Autowired
-	private CiudadanoRepository repositorio;
+	private CitizenDBRepository repositorio;
 
 	@Override
-	public boolean UpdateCitizen(Ciudadano ciudadano) {
-		Ciudadano citizen= repositorio.save(ciudadano);
+	public boolean UpdateCitizen(CitizenDB ciudadano) {
+		CitizenDB citizen= repositorio.save(ciudadano);
 		return citizen.equals(ciudadano);
 	}
 
 	@Override
-	public Ciudadano UpdateCitizen(ChangePassword info) {
+	public CitizenDB UpdateCitizen(ChangePassword info) {
 
-		Ciudadano citizen = repositorio.findByEmail(info.getEmail());
+		CitizenDB citizen = repositorio.findByMail(info.getEmail());
 		if(citizen==null)return null;
 		if(!citizen.getPassword().equals(info.getPassword())) return null;
 

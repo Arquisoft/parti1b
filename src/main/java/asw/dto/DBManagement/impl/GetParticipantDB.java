@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import asw.dto.DBManagement.GetParticipant;
-import asw.dto.DBManagement.model.Ciudadano;
 import asw.dto.DBManagement.persistence.CiudadanoRepository;
+import asw.dto.model.CitizenDB;
 import asw.participants.acceso.ParticipantsLogin;
 
 @Component
@@ -15,14 +15,14 @@ public class GetParticipantDB implements GetParticipant{
 	private CiudadanoRepository repositorio; 
 	
 	@Override
-	public Ciudadano getCiudadano(String email) {
-		Ciudadano citizen = repositorio.findByEmail(email);
+	public CitizenDB getCiudadano(String mail) {
+		CitizenDB citizen = repositorio.findByEmail(mail);
 		return citizen;
 	}
 
 	@Override
-	public Ciudadano getCiudadano(ParticipantsLogin participante) {
-		Ciudadano citizen = repositorio.findByEmail(participante.getEmail());
+	public CitizenDB getCiudadano(ParticipantsLogin participante) {
+		CitizenDB citizen = repositorio.findByEmail(participante.getEmail());
 		return citizen;
 	}
 
