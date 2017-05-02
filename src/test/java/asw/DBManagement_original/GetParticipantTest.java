@@ -1,10 +1,10 @@
 package asw.DBManagement_original;
 
 import asw.Application;
-import asw.DBManagement_original.GetParticipant;
-import asw.DBManagement_original.model.Ciudadano;
-import asw.DBManagement_original.persistence.CiudadanoRepository;
-import asw.participants_original.acceso.ParticipantsLogin;
+import asw.dto.DBManagement.GetParticipant;
+import asw.dto.DBManagement.model.Ciudadano;
+import asw.dto.DBManagement.persistence.CiudadanoRepository;
+import asw.participants.acceso.ParticipantsLogin;
 
 import org.junit.After;
 import org.junit.Before;
