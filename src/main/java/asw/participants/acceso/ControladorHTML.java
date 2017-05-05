@@ -90,7 +90,7 @@ public class ControladorHTML {
 					if(ciudadano.getType().equals("ADMIN"))
 						return this.popularidadSugerencia(parametros, modelo);
 					else
-						return "user";
+						return "User/homeUsuario";
 				}
 			}
 
