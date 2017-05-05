@@ -26,10 +26,10 @@ public class VoteCommentServiceImpl implements VoteCommentService {
 		return voteCommentRepository.findByCitizenDB(citizen);
 	}
 
-	@Override
-	public VoteComment findByVoteCommentKey(VoteCommentKey voteCommentKey) {
-		return voteCommentRepository.findByVoteCommentKey(voteCommentKey);
-	}
+	//@Override
+	//public VoteComment findByVoteCommentKey(VoteCommentKey voteCommentKey) {
+	//	return voteCommentRepository.findByVoteCommentKey(voteCommentKey);
+	//}
 
 	@Override
 	public VoteComment createVoteComment(VoteComment voteComment) {

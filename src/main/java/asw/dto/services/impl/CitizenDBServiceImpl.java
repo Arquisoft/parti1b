@@ -41,8 +41,8 @@ public class CitizenDBServiceImpl implements CitizenDBService {
 		return citizen;
 	}
 	
-	@Override
-	public CitizenDB getByLogin(String login){
-		return citizenDBRepository.findByLogin(login);
-	}
+	//@Override
+	//public CitizenDB getByLogin(String login){
+	//	return citizenDBRepository.findByLogin(login);
+	//}
 }
