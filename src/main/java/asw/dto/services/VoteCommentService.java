@@ -5,7 +5,6 @@ import java.util.List;
 import asw.dto.model.CitizenDB;
 import asw.dto.model.Comment;
 import asw.dto.model.VoteComment;
-import asw.dto.model.key.VoteCommentKey;
 
 
 public interface VoteCommentService {

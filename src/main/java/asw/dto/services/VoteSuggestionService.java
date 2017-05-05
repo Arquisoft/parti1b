@@ -5,7 +5,6 @@ import java.util.List;
 import asw.dto.model.CitizenDB;
 import asw.dto.model.Suggestion;
 import asw.dto.model.VoteSuggestion;
-import asw.dto.model.key.VoteSuggestionKey;
 
 public interface VoteSuggestionService {
 

@@ -15,7 +15,7 @@ import asw.dto.model.Suggestion;
  * @author Sergio
  */
 @Entity
-@Table(name="Persona")
+@Table(name="ciudadano")
 public class CitizenDB {
 
 	@Id

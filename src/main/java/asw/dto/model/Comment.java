@@ -16,12 +16,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import asw.dto.model.key.CommentKey;
 import asw.dto.model.Suggestion;
 
 @Entity
-@IdClass(CommentKey.class)
-@Table(name = "Comentario")
+//@IdClass(CommentKey.class)
+@Table(name = "comentario")
 public class Comment {
 	
 	@Id

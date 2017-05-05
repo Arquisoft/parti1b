@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import asw.dto.model.CitizenDB;
 import asw.dto.model.Comment;
 import asw.dto.model.VoteComment;
-import asw.dto.model.key.VoteCommentKey;
 import asw.dto.repository.VoteCommentRepository;
 import asw.dto.services.VoteCommentService;
 
@@ -18,7 +17,7 @@ public class VoteCommentServiceImpl implements VoteCommentService {
 
 	@Override
 	public List<VoteComment> findByComment(Comment comment) {
-		return voteCommentRepository.findByComment(comment);
+		return voteCommentRepository.findByCommentEquals(comment);
 	}
 
 	@Override

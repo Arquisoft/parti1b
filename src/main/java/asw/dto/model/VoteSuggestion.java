@@ -8,13 +8,11 @@ import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import asw.dto.model.key.VoteSuggestionKey;
-
 
 
 @Entity
-@IdClass(VoteSuggestionKey.class)
-@Table(name="VotoSugerencia")
+//@IdClass(VoteSuggestionKey.class)
+@Table(name="voteSuggestion")
 public class VoteSuggestion {
 	
 	@Id

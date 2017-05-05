@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import asw.dto.model.CitizenDB;
 import asw.dto.model.Suggestion;
 import asw.dto.model.VoteSuggestion;
-import asw.dto.model.key.VoteSuggestionKey;
 import asw.dto.repository.VoteSuggestionRepository;
 import asw.dto.services.VoteSuggestionService;
 
@@ -18,7 +17,7 @@ public class VoteSuggestionServiceImpl implements VoteSuggestionService {
 	
 	@Override
 	public List<VoteSuggestion> findBySuggestion(Suggestion suggestion) {
-		return voteSuggestionServiceImpl.findBySuggestion(suggestion);
+		return voteSuggestionServiceImpl.findBySuggestionEquals(suggestion);
 	}
 
 	@Override

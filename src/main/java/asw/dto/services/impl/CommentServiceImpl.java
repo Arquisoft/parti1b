@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import asw.dto.model.CitizenDB;
 import asw.dto.model.Comment;
 import asw.dto.model.Suggestion;
-import asw.dto.model.key.CommentKey;
 import asw.dto.repository.CommentRepository;
 import asw.dto.services.CommentsService;
 
@@ -20,10 +19,10 @@ public class CommentServiceImpl implements CommentsService {
 		this.commentRepository = commentRepository;
 	}
 
-	@Override
-	public List<Comment> findBySuggestion(Suggestion suggestion) {
-		return commentRepository.fingBySuggestion(suggestion);
-	}
+	//@Override
+	//public List<Comment> findBySuggestion(Suggestion suggestion) {
+	//	return commentRepository.fingBySuggestionEquals(suggestion);
+	//}
 
 	@Override
 	public List<Comment> findByCitizenDB(CitizenDB citizenDB) {

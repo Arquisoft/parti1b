@@ -7,11 +7,10 @@ import org.springframework.data.repository.CrudRepository;
 import asw.dto.model.CitizenDB;
 import asw.dto.model.Comment;
 import asw.dto.model.VoteComment;
-import asw.dto.model.key.VoteCommentKey;
 
 public interface VoteCommentRepository extends CrudRepository<VoteComment, Long>{
 
-	List<VoteComment> findByComment(Comment comment);
+	List<VoteComment> findByCommentEquals(Comment comment);
 
 	List<VoteComment> findByCitizenDB(CitizenDB citizen);
 

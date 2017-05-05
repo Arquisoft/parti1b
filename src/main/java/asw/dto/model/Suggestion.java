@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 
 
 @Entity
-@Table(name="Sugerencia")
+@Table(name="sugerencia")
 public class Suggestion {
 	
 	@Id
