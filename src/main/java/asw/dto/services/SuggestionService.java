@@ -1,6 +1,7 @@
 package asw.dto.services;
 
 import java.util.List;
+import java.util.Set;
 
 import asw.dto.model.CitizenDB;
 import asw.dto.model.Suggestion;

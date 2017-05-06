@@ -1,6 +1,8 @@
 package asw.controllers;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -15,8 +17,6 @@ import asw.dto.model.CitizenDB;
 import asw.dto.model.Comment;
 import asw.dto.model.Suggestion;
 import asw.dto.model.VoteSuggestion;
-import asw.dto.services.CitizenDBService;
-import asw.dto.services.CommentsService;
 import asw.dto.services.SuggestionService;
 
 
@@ -28,17 +28,13 @@ public class SuggestionController {
 	//Descomentar cuando funciones service
 	@Autowired
 	private SuggestionService suggestionService;
-	@Autowired
-	private CitizenDBService citizenDBService;
-	@Autowired
-	private CommentsService commentsService;
 	
 	public void setSuggestionService(SuggestionService suggestionService) {
 		this.suggestionService = suggestionService;
 	}
 
 
-	private Set<Suggestion> sugerencias = new HashSet<Suggestion>();
+	private List<Suggestion> sugerencias = new ArrayList<Suggestion>();
 	private Set<Comment> comments = new HashSet<Comment>();
 	
 	
@@ -50,13 +46,13 @@ public class SuggestionController {
 		suggestion.setContent(contenido);
 		//Esto cuando funcione el service
 		suggestionService.createSuggestion(suggestion);
-		sugerencias = (Set<Suggestion>) suggestionService.findAll();
+		sugerencias = suggestionService.findAll();
 		session.setAttribute("sugerencias", sugerencias);
 		
 		// AHORA 
 		session.setAttribute("sugerencias", sugerencias);
 		
-		return "user/home";
+		return "User/homeUsuario";
 		
 		
 }
@@ -92,7 +88,7 @@ public class SuggestionController {
   				}
   		    	session.setAttribute("sugerencias", suggestions);
   		    	
-  		    	return "user/home";
+  		    	return "User/homeUsuario";
   	 	}
   	     
   	     @RequestMapping(value="/votaNegSuggestion")
@@ -127,7 +123,7 @@ public class SuggestionController {
 				}
 		    	session.setAttribute("sugerencias", suggestions);
 		    	
-		    	return "user/home";
+		    	return "User/homeUsuario";
 	 	}
     
     //De momento no funciona correctamente

@@ -1,6 +1,7 @@
 package asw.dto.services.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,7 @@ public class SuggestionServiceImpl implements SuggestionService {
 
 	@Override
 	public List<Suggestion> findAll() {
-		return (List<Suggestion>) suggestionRepository.findAll();
+		return suggestionRepository.findAll();
 	}
 
 	@Override

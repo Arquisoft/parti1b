@@ -103,7 +103,7 @@ public class MainController {
     	
     	session.setAttribute("sugerencias", this.sugerencias);
     	
-        return "index2";
+        return "/login";
        }
    
    private Set<Suggestion> crearSugerencias() {
@@ -142,9 +142,9 @@ public class MainController {
 	}
     */
     
-    @RequestMapping(value="/user/home")
+    @RequestMapping(value="/User/homeUsuario")
     public String logHtml(Model model){
-    	return "user/home";
+    	return "User/homeUsuario";
     }
     
     
@@ -161,7 +161,7 @@ public class MainController {
     if(user.getPassword().equals(ciudadano.getPassword()) && user.getMail().equals(ciudadano.getMail())){
     	session.setAttribute("usuario", ciudadano);
     	session.setAttribute("sugerencias", sugerencias);
-    	return "user/home";
+    	return "User/homeUsuario";
     }
  
     if(user.getPassword().equals(administrador.getPassword()) && user.getMail().equals(administrador.getMail())){
@@ -178,9 +178,7 @@ public class MainController {
     	@RequestMapping(value="/cerrarSesion")
         public String logOut( HttpSession session){
          
-    		session.setAttribute("usuario", null);
-    		
-    		
-    		return "/index2";
+    		session.setAttribute("usuario", null);  		
+    		return "/login";
     	}
 }
