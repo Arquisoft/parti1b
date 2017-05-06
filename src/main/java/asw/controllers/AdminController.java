@@ -81,8 +81,7 @@ public class AdminController {
   
     		session.setAttribute("sugerencias", sugerencias);
     		
-    		
-    		return "admin/home";
+       		return "admin/home";
     	}
 
 }

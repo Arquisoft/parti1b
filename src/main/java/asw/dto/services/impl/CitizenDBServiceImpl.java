@@ -33,7 +33,7 @@ public class CitizenDBServiceImpl implements CitizenDBService {
 	}
 
 	@Override
-	public CitizenDB getCitizenDB(String email) {
+	public CitizenDB findByMail(String email) {
 		return citizenDBRepository.findByMail(email);
 	}
 
