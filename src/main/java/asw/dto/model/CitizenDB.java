@@ -48,7 +48,7 @@ public class CitizenDB {
 	@OneToMany(mappedBy = "citizenDB")
 	private Set<VoteSuggestion> votesSugerencias = new HashSet<VoteSuggestion>();
 	
-	@OneToMany(mappedBy = "citizenDB")
+	@OneToMany(mappedBy = "citizenDB",fetch = FetchType.EAGER)
 	private Set<Suggestion> sugerencias = new HashSet<Suggestion>();
 	
 

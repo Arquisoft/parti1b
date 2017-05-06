@@ -11,10 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import asw.dto.model.Suggestion;
-import asw.dto.model.VoteSuggestion;
 import asw.dto.model.CitizenDB;
 import asw.dto.model.Comment;
+import asw.dto.model.Suggestion;
+import asw.dto.model.VoteSuggestion;
+import asw.dto.services.CitizenDBService;
+import asw.dto.services.CommentsService;
+import asw.dto.services.SuggestionService;
 
 
 
@@ -23,16 +26,16 @@ import asw.dto.model.Comment;
 public class SuggestionController {
 	
 	//Descomentar cuando funciones service
-//	@Autowired
-//	private SuggestionService suggestionService;
-//	@Autowired
-//	private CitizenDBService citizenDBService;
-//	@Autowired
-//	private CommentsService commentsService;
+	@Autowired
+	private SuggestionService suggestionService;
+	@Autowired
+	private CitizenDBService citizenDBService;
+	@Autowired
+	private CommentsService commentsService;
 	
-//	public void setSuggestionService(SuggestionService suggestionService) {
-//		this.suggestionService = suggestionService;
-//	}
+	public void setSuggestionService(SuggestionService suggestionService) {
+		this.suggestionService = suggestionService;
+	}
 
 
 	private Set<Suggestion> sugerencias = new HashSet<Suggestion>();
@@ -43,14 +46,12 @@ public class SuggestionController {
     public String makeSuggestion(@RequestParam String titulo, @RequestParam String contenido, HttpSession session){
      
 		CitizenDB user = (CitizenDB) session.getAttribute("usuario");
-		sugerencias = (Set<Suggestion>) session.getAttribute("sugerencias");
 		Suggestion suggestion = new Suggestion((long)user.getSugerencias().size()+1,titulo, user);
 		suggestion.setContent(contenido);
-		sugerencias.add(suggestion);
 		//Esto cuando funcione el service
-		//suggestionService.createSuggestion(suggestion);
-		//sugerencias = suggestionService.findAll();
-		//session.setAttribute("sugerencias", sugerencias);
+		suggestionService.createSuggestion(suggestion);
+		sugerencias = (Set<Suggestion>) suggestionService.findAll();
+		session.setAttribute("sugerencias", sugerencias);
 		
 		// AHORA 
 		session.setAttribute("sugerencias", sugerencias);

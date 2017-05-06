@@ -7,7 +7,10 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.context.event.EventListener;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -28,11 +31,11 @@ import asw.dto.repository.SuggestionRepository;
 import asw.estadistica.EstadisticaService;
 import asw.listeners.MessageListener.VoteEvent;
 
+@Scope("session")
 @Controller
 public class ControladorHTML {
 
 	 private List<SseEmitter> sseEmitters = Collections.synchronizedList(new ArrayList<>()); 
-
 	
 	@Autowired
 	private CitizenDBRepository repositorio;
@@ -48,7 +51,7 @@ public class ControladorHTML {
 
 
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
-	public String postHTML(@RequestBody String parametros, Model modelo){
+	public String postHTML(HttpSession session,@RequestBody String parametros, Model modelo){
 		//parametros = email=nombre&password=contraseña
 		String[] p = parametros.split("&");
 
@@ -87,8 +90,11 @@ public class ControladorHTML {
 				}
 
 				if(ciudadano != null){
+					session.setAttribute("usuario", ciudadano);
+					
 					if(ciudadano.getType().equals("POLITICO"))
 						return this.popularidadSugerencia(parametros, modelo);
+					
 					if(ciudadano.getType().equals("ADMIN"))
 						return "Admin/home";
 					else
@@ -102,7 +108,6 @@ public class ControladorHTML {
 		}catch(Exception e){
 			modelo.addAttribute("error", "Ha ocurrido en error al conseguir los datos del usuario.");
 			return "error";
-
 		}
 	}
 
