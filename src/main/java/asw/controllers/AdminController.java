@@ -26,9 +26,15 @@ public class AdminController {
 	
 	@Autowired
 	private CitizenDBService citizenService;
+	
+	@Autowired
 	private CommentsService commentService;
+	
+	@Autowired
 	private SuggestionService suggestionService;
+	
 	private VoteCommentService vCommentService;
+	
 	private VoteSuggestionService vSuggestionService;
 	
 		
@@ -54,6 +60,10 @@ public class AdminController {
 	   @RequestMapping(value="/borrar")
 	    public String borrar(String id_sug,HttpSession session){
 		   Suggestion suggestion = suggestionService.findById(Long.parseLong(id_sug));
+		   
+		   for(Comment c : suggestion.getComments())
+			   commentService.deleteComment(c);
+		   
 		   suggestionService.deleteSuggestion(suggestion);
 		   session.setAttribute("sugerencias", suggestionService.findAll());
 		   return "admin/home";
@@ -62,29 +72,13 @@ public class AdminController {
 		@RequestMapping(value="/admin/edit/editSuggestion")
     	public String editSuggestion(@RequestParam String titulo,
     			@RequestParam String contenido,HttpSession session){
-    		//ESTO AHORA
-			List<Suggestion> lista = (List<Suggestion>) session.getAttribute("sugerencias");
-			sugerencias=lista;
+
     		Suggestion suggestion = (Suggestion) session.getAttribute("sugerencia");
-    		Suggestion suggestion2 = suggestion;
-    		
-    		sugerencias.remove(suggestion);
-    		
-    		if(!titulo.equals(""))
-    			suggestion2.setTitle(titulo);
-    		if(!contenido.equals(""))
-    		suggestion2.setContent(contenido);
-    		
-    		sugerencias.add(suggestion2);
-    		
-    		//Cuando tengamos Service
-    		//Suggestion suggestion = (Suggestion) session.getAttribute("sugerencia");
-    		//suggestion.setTitle(titulo);
-    		//suggestion.setContent(contenido);
-    		//suggestionService.update(suggestion);
-    		//sugerencias = suggestionService.findAll();
-    		
-    		session.setAttribute("sugerencia", suggestion2);
+    		suggestion.setTitle(titulo);
+    		suggestion.setContent(contenido);
+    		suggestionService.update(suggestion);
+    		sugerencias = suggestionService.findAll();
+  
     		session.setAttribute("sugerencias", sugerencias);
     		
     		

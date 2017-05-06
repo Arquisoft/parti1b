@@ -35,7 +35,7 @@ public class SuggestionServiceImpl implements SuggestionService {
 	public Suggestion findById(Long id){
 		return this.suggestionRepository.findOne(id);
 	}
-
+	
 	@Override
 	public List<Suggestion> findAll() {
 		return suggestionRepository.findAll();
@@ -49,7 +49,11 @@ public class SuggestionServiceImpl implements SuggestionService {
 	@Override
 	public void deleteSuggestion(Suggestion suggestion) {
 		suggestionRepository.delete(suggestion);
-		
+	}
+
+	@Override
+	public void update(Suggestion suggestion) {
+		suggestionRepository.save(suggestion);
 	}
 
 }

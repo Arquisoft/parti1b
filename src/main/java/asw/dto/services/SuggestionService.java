@@ -15,4 +15,5 @@ public interface SuggestionService {
 	
     Suggestion createSuggestion(Suggestion suggestion);
     void deleteSuggestion(Suggestion suggestion);
+	void update(Suggestion suggestion);
 }
