@@ -26,7 +26,7 @@ public class Comment {
 	@ManyToOne
 	private CitizenDB citizenDB;
 	@ManyToOne
-	private Suggestion suggestion;
+	private Suggestion idSugerencia;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 	private String text;
@@ -89,11 +89,11 @@ public class Comment {
 	}
 
 	public Suggestion getSuggestion() {
-		return suggestion;
+		return idSugerencia;
 	}
 	
 	void _setSuggestion(Suggestion suggestion) {
-		this.suggestion = suggestion;
+		this.idSugerencia = suggestion;
 	}
 
 	public Date getDate() {
@@ -110,7 +110,7 @@ public class Comment {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((citizenDB == null) ? 0 : citizenDB.hashCode());
-		result = prime * result + ((suggestion == null) ? 0 : suggestion.hashCode());
+		result = prime * result + ((idSugerencia == null) ? 0 : idSugerencia.hashCode());
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
 		return result;
 	}
@@ -129,10 +129,10 @@ public class Comment {
 				return false;
 		} else if (!citizenDB.equals(other.citizenDB))
 			return false;
-		if (suggestion == null) {
-			if (other.suggestion != null)
+		if (idSugerencia == null) {
+			if (other.idSugerencia != null)
 				return false;
-		} else if (!suggestion.equals(other.suggestion))
+		} else if (!idSugerencia.equals(other.idSugerencia))
 			return false;
 		if (text == null) {
 			if (other.text != null)

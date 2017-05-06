@@ -16,6 +16,7 @@ import asw.dto.model.Comment;
 import asw.dto.model.Suggestion;
 import asw.dto.model.VoteComment;
 import asw.dto.services.CommentsService;
+import asw.dto.services.SuggestionService;
 
 
 @Scope("session")
@@ -34,6 +35,10 @@ public class CommentController {
 	
 	private List<Suggestion> sugerencias = new ArrayList<Suggestion>();
 	private List<Comment> comments = new ArrayList<Comment>();
+	
+	public void setCommentService(CommentsService commentsService) {
+		this.commentsService = commentsService;
+	}
 	
 	@RequestMapping(value="/User/comment/commentSuggestion")
     public String commentSuggestion( @RequestParam String comentario, HttpSession session){
@@ -85,7 +90,7 @@ public class CommentController {
 	    public String votePosComment(String id_con , HttpSession session){
 	    	
 		 //Cuando tengamos service
-		   //Comment commet = commentsService.fingById(Long.parseLong(id_con));
+		   //Comment commet = commentsService.findById(Long.parseLong(id_con));
 		 	
 		 
 		 	//AHORA 

@@ -31,14 +31,7 @@ public class AdminController {
 	private VoteCommentService vCommentService;
 	private VoteSuggestionService vSuggestionService;
 	
-	
-	
-	//aunque lo suyo sería buscar todas las sugerencias desde el servicio de momento
-	//falla, con lo que voy a crear a pelo una lista de sugerencias e insertar en ellas para
-	//ir probando
-	//private List<Suggestion> sugerencias = //new SuggestionServiceImpl().findAll();
-	
-	
+		
 	private List<Suggestion> sugerencias = new ArrayList<Suggestion>();
 	private List<Comment> comments = new ArrayList<Comment>();
 	
@@ -60,17 +53,10 @@ public class AdminController {
 	 
 	   @RequestMapping(value="/borrar")
 	    public String borrar(String id_sug,HttpSession session){
-		   Suggestion suggestion  = null;
-	    	List<Suggestion> aux = (List<Suggestion>) session.getAttribute("sugerencias");
-	    	for(Suggestion sug : aux)
-	    		if(sug.getId() == Long.parseLong(id_sug))
-	    			suggestion = sug;
-	    	
-	    	aux.remove(suggestion);
-	    	sugerencias = aux;
-	    	
-	    	session.setAttribute("sugerencias", sugerencias);
-	    	return "admin/home";
+		   Suggestion suggestion = suggestionService.findById(Long.parseLong(id_sug));
+		   suggestionService.deleteSuggestion(suggestion);
+		   session.setAttribute("sugerencias", suggestionService.findAll());
+		   return "admin/home";
 	    }
 	       	
 		@RequestMapping(value="/admin/edit/editSuggestion")

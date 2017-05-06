@@ -3,6 +3,7 @@ package asw.dto.services.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import asw.dto.model.CitizenDB;
 import asw.dto.model.Comment;
@@ -10,6 +11,7 @@ import asw.dto.model.Suggestion;
 import asw.dto.repository.CommentRepository;
 import asw.dto.services.CommentsService;
 
+@Service
 public class CommentServiceImpl implements CommentsService {
 
 	private CommentRepository commentRepository;
@@ -20,8 +22,8 @@ public class CommentServiceImpl implements CommentsService {
 	}
 
 	@Override
-	public List<Comment> findBySuggestion(Suggestion suggestion) {
-		return commentRepository.fingBySuggestionEquals(suggestion);
+	public List<Comment> findBySuggestion(Suggestion idSugerencia) {
+		return commentRepository.findByIdSugerencia(idSugerencia);
 	}
 
 	@Override

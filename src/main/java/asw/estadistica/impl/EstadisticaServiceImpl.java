@@ -19,11 +19,10 @@ public class EstadisticaServiceImpl implements EstadisticaService {
 	public Estadistica nuevaSugerencia(Suggestion sugerencia) {
 		Map<String, Integer> campos = new HashMap<>();
 		
-		campos.put("Comentarios",0);
+		campos.put("Comentarios",sugerencia.getComments().size());
 		campos.put("Apoyos",sugerencia.getNum_votes()*1);
 		
 		return new Estadistica(sugerencia.getTitle(),campos);
-
 	}
 	
 	

@@ -1,6 +1,7 @@
 package asw.dto.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import asw.dto.model.CitizenDB;
 import asw.dto.repository.CitizenDBRepository;
@@ -8,6 +9,7 @@ import asw.dto.repository.CommentRepository;
 import asw.dto.repository.SuggestionRepository;
 import asw.dto.services.CitizenDBService;
 
+@Service
 public class CitizenDBServiceImpl implements CitizenDBService {
 	
 	@Autowired

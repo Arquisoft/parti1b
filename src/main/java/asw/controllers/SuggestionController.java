@@ -52,7 +52,6 @@ public class SuggestionController {
 		
 		return "User/homeUsuario";
 		
-		
 }
   	
   	 	@RequestMapping(value="/votaPosSuggestion")

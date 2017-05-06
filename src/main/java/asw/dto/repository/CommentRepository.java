@@ -12,7 +12,7 @@ import asw.dto.model.Suggestion;
 @Repository
 public interface CommentRepository extends CrudRepository<Comment, Long>{
 
-	List<Comment> fingBySuggestionEquals(Suggestion suggestion);
+	List<Comment> findByIdSugerencia(Suggestion idSugerencia);
 
 	List<Comment> findByCitizenDB(CitizenDB citizenDB);
 

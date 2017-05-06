@@ -25,7 +25,7 @@ public class Suggestion {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
-	@OneToMany(mappedBy = "suggestion",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "idSugerencia",fetch = FetchType.EAGER)
 	private List<Comment> comments  = new ArrayList<Comment>();
 	private int num_votes; // quizás estaría bien que la consulta cargara su número de votos de la BD en primera instancia
 						   // y de cara al rendimiento los mantuviera en esta variable (hablarlo)
