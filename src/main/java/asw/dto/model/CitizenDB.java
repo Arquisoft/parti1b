@@ -1,13 +1,17 @@
 package asw.dto.model;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
-import javax.persistence.*;
-
-import asw.dto.model.Comment;
-import asw.dto.model.Suggestion;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * Clase que adapta los ciudadanos creados para su posterior insercion en la
@@ -39,17 +43,17 @@ public class CitizenDB {
 	private String password; //La password que se va a poner al ciudadano
 	@Column(nullable = true)
 	private String type;
-	@OneToMany(mappedBy = "citizenDB")
-	private Set<Comment> comments = new HashSet<Comment>();
-	
-	@OneToMany(mappedBy = "citizenDB")
-	private Set<VoteComment> votesComments = new HashSet<VoteComment>();
-	
-	@OneToMany(mappedBy = "citizenDB")
-	private Set<VoteSuggestion> votesSugerencias = new HashSet<VoteSuggestion>();
+	@OneToMany(mappedBy = "citizenDB",fetch = FetchType.EAGER)
+	private List<Comment> comments = new ArrayList<Comment>();
 	
 	@OneToMany(mappedBy = "citizenDB",fetch = FetchType.EAGER)
-	private Set<Suggestion> sugerencias = new HashSet<Suggestion>();
+	private List<VoteComment> votesComments = new ArrayList<VoteComment>();
+	
+	@OneToMany(mappedBy = "citizenDB",fetch = FetchType.EAGER)
+	private List<VoteSuggestion> votesSugerencias = new ArrayList<VoteSuggestion>();
+	
+	@OneToMany(mappedBy = "citizenDB",fetch = FetchType.EAGER)
+	private List<Suggestion> sugerencias = new ArrayList<Suggestion>();
 	
 
 	/**Constructor de la clase CitizenDB
@@ -77,46 +81,46 @@ public class CitizenDB {
 	
 	
 	
-	public Set<Suggestion> getSugerencias() {
-		return new HashSet<>(sugerencias);
+	public List<Suggestion> getSugerencias() {
+		return new ArrayList<>(sugerencias);
 	}
 
-	Set<Suggestion> _getSugerencias() {
+	List<Suggestion> _getSugerencias() {
 		return sugerencias;
 	}
 
-	public void setSugerencias(Set<Suggestion> sugerencias) {
+	public void setSugerencias(List<Suggestion> sugerencias) {
 		this.sugerencias = sugerencias;
 	}
 
 
 
-	public Set<VoteComment> getVotesComments() {
-		return new HashSet<>(votesComments);
+	public List<VoteComment> getVotesComments() {
+		return new ArrayList<>(votesComments);
 	}
 	
-	Set<VoteComment> _getVotesComments() {
+	List<VoteComment> _getVotesComments() {
 		return votesComments;
 	}
 
 
 
-	public void setVotesComments(Set<VoteComment> votesComments) {
+	public void setVotesComments(List<VoteComment> votesComments) {
 		this.votesComments = votesComments;
 	}
 
 
 
-	public Set<VoteSuggestion> getVotesSugerencias() {
-		return new HashSet<>(votesSugerencias);
+	public List<VoteSuggestion> getVotesSugerencias() {
+		return new ArrayList<>(votesSugerencias);
 	}
-	 Set<VoteSuggestion> _getVotesSugerencias() {
+	 List<VoteSuggestion> _getVotesSugerencias() {
 		return votesSugerencias;
 	}
 
 
 
-	public void setVotesSugerencias(Set<VoteSuggestion> votesSugerencias) {
+	public void setVotesSugerencias(List<VoteSuggestion> votesSugerencias) {
 		this.votesSugerencias = votesSugerencias;
 	}
 
@@ -138,15 +142,15 @@ public class CitizenDB {
 	
 	
 
-	public Set<Comment> getComments() {
-		return new HashSet<Comment>(comments);
+	public List<Comment> getComments() {
+		return new ArrayList<Comment>(comments);
 	}
 	
-	Set<Comment> _getComments() {
+	List<Comment> _getComments() {
 		return comments;
 	}
 
-	public void setComments(Set<Comment> comments) {
+	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
 

@@ -1,7 +1,7 @@
 package asw.controllers;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,13 +9,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import asw.dto.model.Comment;
+import asw.dto.model.Suggestion;
 import asw.dto.services.CitizenDBService;
 import asw.dto.services.CommentsService;
 import asw.dto.services.SuggestionService;
 import asw.dto.services.VoteCommentService;
 import asw.dto.services.VoteSuggestionService;
-import asw.dto.model.Comment;
-import asw.dto.model.Suggestion;
 
 
 
@@ -37,10 +37,10 @@ public class UserController {
 	//private List<Suggestion> sugerencias = //new SuggestionServiceImpl().findAll();
 	
 	
-	private Set<Suggestion> sugerencias = new HashSet<Suggestion>();
-	private Set<Comment> comments = new HashSet<Comment>();
+	private List<Suggestion> sugerencias = new ArrayList<Suggestion>();
+	private List<Comment> comments = new ArrayList<Comment>();
 	
-	  @RequestMapping(value="/user/suggestion")
+	  @RequestMapping(value="/User/suggestion")
 	    public String goMakeSuggestion(String id_sug,HttpSession session){
 	    	//de nuevo en este método
 	    	//sería lógico buscar la sugerencia
@@ -50,7 +50,7 @@ public class UserController {
 	    	//en la misma session del usuario
 	    	
 	    	
-	    	return "user/suggestion";
+	    	return "User/suggestion";
 	    }	
 	
 }

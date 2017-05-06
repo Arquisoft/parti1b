@@ -1,9 +1,7 @@
 package asw.controllers;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -35,10 +33,10 @@ public class SuggestionController {
 
 
 	private List<Suggestion> sugerencias = new ArrayList<Suggestion>();
-	private Set<Comment> comments = new HashSet<Comment>();
+	private List<Comment> comments = new ArrayList<Comment>();
 	
 	
-  	@RequestMapping(value="/user/suggestion/makeSuggestion")
+  	@RequestMapping(value="/User/suggestion/makeSuggestion")
     public String makeSuggestion(@RequestParam String titulo, @RequestParam String contenido, HttpSession session){
      
 		CitizenDB user = (CitizenDB) session.getAttribute("usuario");
@@ -66,7 +64,7 @@ public class SuggestionController {
   			 
   			 	//AHORA 
   			 	Suggestion suggestion = (Suggestion) session.getAttribute("sugerencia");
-  			 	Set<Suggestion> suggestions = (Set<Suggestion>) session.getAttribute("sugerencias");
+  			 	List<Suggestion> suggestions = (List<Suggestion>) session.getAttribute("sugerencias");
   			 	for(Suggestion sug : suggestions)
   			 		if(sug.getId() == Long.parseLong(id_sug))
   			 			suggestion = sug;
@@ -79,7 +77,7 @@ public class SuggestionController {
   				if(!existe){
   					
   					VoteSuggestion  voteSuggestion = new VoteSuggestion((long)1,user,suggestion);
-  					Set<Suggestion> aux = (Set<Suggestion>) session.getAttribute("sugerencias");
+  					List<Suggestion> aux = (List<Suggestion>) session.getAttribute("sugerencias");
   					for(Suggestion suggestion2 : aux)
   		    		if(suggestion2.getId() == Long.parseLong(id_sug)){ //sino nos quedaríamos en negativo en los votos
   		    			suggestion2.setNum_votes(suggestion2.getNum_votes()+1);
@@ -99,7 +97,7 @@ public class SuggestionController {
 			 
 			 	//AHORA 
 			 	Suggestion suggestion = (Suggestion) session.getAttribute("sugerencia");
-			 	Set<Suggestion> suggestions = (Set<Suggestion>) session.getAttribute("sugerencias");
+			 	List<Suggestion> suggestions = (List<Suggestion>) session.getAttribute("sugerencias");
 			 	for(Suggestion sug : suggestions)
 			 		if(sug.getId() == Long.parseLong(id_sug))
 			 			suggestion = sug;
@@ -112,7 +110,7 @@ public class SuggestionController {
 				if(!existe){
 					
 					VoteSuggestion  voteSuggestion = new VoteSuggestion((long)1,user,suggestion);
-					Set<Suggestion> aux = (Set<Suggestion>) session.getAttribute("sugerencias");
+					List<Suggestion> aux = (List<Suggestion>) session.getAttribute("sugerencias");
 					for(Suggestion suggestion2 : aux)
 		    		if(suggestion2.getId() == Long.parseLong(id_sug)){
 		    			if(suggestion2.getNum_votes()>0){//sino nos quedaríamos en negativo en los votos
@@ -127,7 +125,7 @@ public class SuggestionController {
 	 	}
     
     //De momento no funciona correctamente
-//    @RequestMapping(value="/user/suggestion")
+//    @RequestMapping(value="/User/suggestion")
 //    public String goMakeSuggestion(@RequestParam String id_sug,HttpSession session){
 //    	//de nuevo en este método
 //    	//sería lógico buscar la sugerencia
@@ -142,7 +140,7 @@ public class SuggestionController {
 //		
 ////    	session.setAttribute("sugerencia", suggestion);
 //    	
-//    	return "user/suggestion";
+//    	return "User/suggestion";
 //    }
 
 }

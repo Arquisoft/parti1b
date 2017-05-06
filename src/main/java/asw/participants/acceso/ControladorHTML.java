@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.event.EventListener;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +29,7 @@ import asw.dto.model.Estadistica;
 import asw.dto.model.Suggestion;
 import asw.dto.repository.CitizenDBRepository;
 import asw.dto.repository.SuggestionRepository;
+import asw.dto.services.SuggestionService;
 import asw.estadistica.EstadisticaService;
 import asw.listeners.MessageListener.VoteEvent;
 
@@ -42,6 +44,9 @@ public class ControladorHTML {
 	
 	@Autowired
 	private SuggestionRepository sugRepos;
+
+	@Autowired
+	private SuggestionService suggestionService;
 	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -91,6 +96,7 @@ public class ControladorHTML {
 
 				if(ciudadano != null){
 					session.setAttribute("usuario", ciudadano);
+			    	session.setAttribute("sugerencias",suggestionService.findAll());
 					
 					if(ciudadano.getType().equals("POLITICO"))
 						return this.popularidadSugerencia(parametros, modelo);

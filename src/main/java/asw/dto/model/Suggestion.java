@@ -1,11 +1,12 @@
 package asw.dto.model;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,8 +25,8 @@ public class Suggestion {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
-	@OneToMany(mappedBy = "suggestion")
-	private Set<Comment> comments  = new HashSet<Comment>();
+	@OneToMany(mappedBy = "suggestion",fetch = FetchType.EAGER)
+	private List<Comment> comments  = new ArrayList<Comment>();
 	private int num_votes; // quizás estaría bien que la consulta cargara su número de votos de la BD en primera instancia
 						   // y de cara al rendimiento los mantuviera en esta variable (hablarlo)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -37,8 +38,8 @@ public class Suggestion {
 	
 	private String content;  //contenido de la sugerencia (el cuerpo de la misma...)
 	
-	@OneToMany(mappedBy = "suggestion")
-	private Set<VoteSuggestion> voteSuggestions  = new HashSet<VoteSuggestion>();
+	@OneToMany(mappedBy = "suggestion",fetch = FetchType.EAGER)
+	private List<VoteSuggestion> voteSuggestions  = new ArrayList<VoteSuggestion>();
 	
 	public Suggestion() {
 	}
@@ -63,16 +64,16 @@ public class Suggestion {
 		this.citizenDB = citizenDB;
 	}
 
-	public Set<VoteSuggestion> getVoteSuggestions() {
-		return new HashSet<>(voteSuggestions);
+	public List<VoteSuggestion> getVoteSuggestions() {
+		return new ArrayList<>(voteSuggestions);
 	}
 	
-	Set<VoteSuggestion> _getVoteSuggestions() {
+	List<VoteSuggestion> _getVoteSuggestions() {
 		return voteSuggestions;
 	}
 
 
-	public void setVoteSuggestions(Set<VoteSuggestion> voteSuggestions) {
+	public void setVoteSuggestions(List<VoteSuggestion> voteSuggestions) {
 		this.voteSuggestions = voteSuggestions;
 	}
 
@@ -84,15 +85,15 @@ public class Suggestion {
 		this.title = title;
 	}
 
-	public Set<Comment> getComments() {
-		return new HashSet<Comment>(comments);
+	public List<Comment> getComments() {
+		return new ArrayList<Comment>(comments);
 	}
 	
-	Set<Comment> _getComments() {
+	List<Comment> _getComments() {
 		return comments;
 	}
 
-	public void setComments(Set<Comment> comments) {
+	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
 

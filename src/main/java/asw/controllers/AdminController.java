@@ -1,7 +1,7 @@
 package asw.controllers;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,13 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import asw.dto.model.Comment;
+import asw.dto.model.Suggestion;
 import asw.dto.services.CitizenDBService;
 import asw.dto.services.CommentsService;
 import asw.dto.services.SuggestionService;
 import asw.dto.services.VoteCommentService;
 import asw.dto.services.VoteSuggestionService;
-import asw.dto.model.Comment;
-import asw.dto.model.Suggestion;
 
 @Scope("session")
 @Controller
@@ -39,8 +39,8 @@ public class AdminController {
 	//private List<Suggestion> sugerencias = //new SuggestionServiceImpl().findAll();
 	
 	
-	private Set<Suggestion> sugerencias = new HashSet<Suggestion>();
-	private Set<Comment> comments = new HashSet<Comment>();
+	private List<Suggestion> sugerencias = new ArrayList<Suggestion>();
+	private List<Comment> comments = new ArrayList<Comment>();
 	
 	 @RequestMapping(value="/admin/home")
 	    public String adminHome(Model model){
@@ -49,7 +49,7 @@ public class AdminController {
 	 
 	 @RequestMapping(value="/admin/edit")
 	    public String adminEdit(String id_sug,HttpSession session){
-	     	Set<Suggestion> aux = (Set<Suggestion>) session.getAttribute("sugerencias");
+	     	List<Suggestion> aux = (List<Suggestion>) session.getAttribute("sugerencias");
 	    	for(Suggestion sug : aux)
 	    		if(sug.getId() == Long.parseLong(id_sug)){
 	    			session.setAttribute("sugerencia", sug);
@@ -61,7 +61,7 @@ public class AdminController {
 	   @RequestMapping(value="/borrar")
 	    public String borrar(String id_sug,HttpSession session){
 		   Suggestion suggestion  = null;
-	    	Set<Suggestion> aux = (Set<Suggestion>) session.getAttribute("sugerencias");
+	    	List<Suggestion> aux = (List<Suggestion>) session.getAttribute("sugerencias");
 	    	for(Suggestion sug : aux)
 	    		if(sug.getId() == Long.parseLong(id_sug))
 	    			suggestion = sug;
@@ -77,7 +77,7 @@ public class AdminController {
     	public String editSuggestion(@RequestParam String titulo,
     			@RequestParam String contenido,HttpSession session){
     		//ESTO AHORA
-			Set<Suggestion> lista = (Set<Suggestion>) session.getAttribute("sugerencias");
+			List<Suggestion> lista = (List<Suggestion>) session.getAttribute("sugerencias");
 			sugerencias=lista;
     		Suggestion suggestion = (Suggestion) session.getAttribute("sugerencia");
     		Suggestion suggestion2 = suggestion;

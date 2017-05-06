@@ -1,19 +1,21 @@
 package asw.controllers;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import asw.dto.model.Suggestion;
-import asw.dto.model.VoteComment;
 import asw.dto.model.CitizenDB;
 import asw.dto.model.Comment;
+import asw.dto.model.Suggestion;
+import asw.dto.model.VoteComment;
+import asw.dto.services.CommentsService;
 
 
 @Scope("session")
@@ -25,15 +27,15 @@ public class CommentController {
 //	private SuggestionService suggestionService;
 //	@Autowired
 //	private CitizenDBService citizenDBService;
-//	@Autowired
-//	private CommentsService commentsService;	
+	@Autowired
+	private CommentsService commentsService;	
 //	@Autowired
 //	private VoteCommentService voteCommentService;
 	
-	private Set<Suggestion> sugerencias = new HashSet<Suggestion>();
-	private Set<Comment> comments = new HashSet<Comment>();
+	private List<Suggestion> sugerencias = new ArrayList<Suggestion>();
+	private List<Comment> comments = new ArrayList<Comment>();
 	
-	@RequestMapping(value="/user/comment/commentSuggestion")
+	@RequestMapping(value="/User/comment/commentSuggestion")
     public String commentSuggestion( @RequestParam String comentario, HttpSession session){
      
 		CitizenDB user = (CitizenDB) session.getAttribute("usuario");
@@ -41,24 +43,24 @@ public class CommentController {
 		Comment comment = new Comment((long)comments.size()+1, user, suggestion, comentario);
 		
 		//Esto cuando funcione el service
-		//commentsService.createComment(comment);
-		//comments = (Set<Comment>) commentsService.findBySuggestion(suggestion);
+		commentsService.createComment(comment);
+		comments = (List<Comment>) commentsService.findBySuggestion(suggestion);
 		//session.setAttribute("comments", comments);
 		
 		// AHORA 
-		comments = suggestion.getComments();
+		//comments = suggestion.getComments();
 		session.setAttribute("sugerencia", suggestion);
 		session.setAttribute("comments", comments);
 		
-		return "user/comment";
+		return "User/comment";
 		
 	}
 	
-	@RequestMapping(value="user/comment")
+	@RequestMapping(value="User/comment")
     public String showComments(Long id_sug,String comment,HttpSession session){
     	//Cuando tengamso Service    
 //    	Suggestion suggestion = suggestionService.findById(id_sug);
-//    	comments = (Set<Comment>) commentsService.findBySuggestion(suggestion);
+//    	comments = (List<Comment>) commentsService.findBySuggestion(suggestion);
 //    	session.setAttribute("suggestion", suggestion);
 //    	session.setAttribute("comments", comments);
     	
@@ -66,7 +68,7 @@ public class CommentController {
     	//Esto ahora
     	Suggestion suggestion1 = null;
     	CitizenDB citizenDB = (CitizenDB) session.getAttribute("usuario");
-    	sugerencias = (Set<Suggestion>) session.getAttribute("sugerencias");
+    	sugerencias = (List<Suggestion>) session.getAttribute("sugerencias");
     	for(Suggestion suggestion : sugerencias)
     		if(suggestion.getId() == id_sug)
     			suggestion1 = suggestion;
@@ -76,7 +78,7 @@ public class CommentController {
     	session.setAttribute("sugerencia", suggestion1);
     	session.setAttribute("comments", comments);
     	   
-    	return "user/comment";
+    	return "User/comment";
     }
 	
 	 @RequestMapping(value="/votaPosComment")
@@ -101,7 +103,7 @@ public class CommentController {
 			if(!existe){
 				
 				VoteComment  voteComment = new VoteComment((long)1,comment,user);
-				Set<Comment> aux = (Set<Comment>) session.getAttribute("comments");
+				List<Comment> aux = (List<Comment>) session.getAttribute("comments");
 				for(Comment comment1 : aux)
 	    		if(comment1.getId() == Long.parseLong(id_con)){ //sino nos quedaríamos en negativo en los votos
 	    			comment1.setNumero_votos(comment1.getNumero_votos()+1);
@@ -110,7 +112,7 @@ public class CommentController {
 			}
 	    	session.setAttribute("comments", comments);
 	    	
-	    	return "user/comment";
+	    	return "User/comment";
 	    }
 	    
 	    @RequestMapping(value="/votaNegComment")
@@ -134,7 +136,7 @@ public class CommentController {
 				if(!existe){
 					
 					VoteComment  voteComment = new VoteComment((long)1,comment,user);
-					Set<Comment> aux = (Set<Comment>) session.getAttribute("comments");
+					List<Comment> aux = (List<Comment>) session.getAttribute("comments");
 					for(Comment comment1 : aux)
 		    		if(comment1.getId() == Long.parseLong(id_con)){ 
 		    			if(comment1.getNumero_votos()>0)//sino nos quedaríamos en negativo en los votos
@@ -144,7 +146,7 @@ public class CommentController {
 				}
 		    	session.setAttribute("comments", comments);
 		    	
-		    	return "user/comment";
+		    	return "User/comment";
 		    }
 
 }

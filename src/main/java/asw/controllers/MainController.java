@@ -2,9 +2,9 @@ package asw.controllers;
 
 
 
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import asw.dto.model.CitizenDB;
+import asw.dto.model.Comment;
+import asw.dto.model.Suggestion;
 import asw.dto.services.CitizenDBService;
 import asw.dto.services.CommentsService;
 import asw.dto.services.SuggestionService;
 import asw.dto.services.VoteCommentService;
 import asw.dto.services.VoteSuggestionService;
-import asw.dto.model.Suggestion;
-import asw.dto.model.Comment;
 
 
 
@@ -45,8 +45,8 @@ public class MainController {
 	
 	
 	//Descomentar cuando funciones service
-//	@Autowired
-//	private SuggestionService suggestionService;
+	@Autowired
+	private SuggestionService suggestionService;
 //	@Autowired
 //	private CitizenDBService citizenDBService;
 //	@Autowired
@@ -54,7 +54,6 @@ public class MainController {
 
 	private CitizenDBService citizenService;
 	private CommentsService commentService;
-	private SuggestionService suggestionService;
 	private VoteCommentService vCommentService;
 	private VoteSuggestionService vSuggestionService;
 	
@@ -66,8 +65,8 @@ public class MainController {
 	//private List<Suggestion> sugerencias = //new SuggestionServiceImpl().findAll();
 	
 	
-	private Set<Suggestion> sugerencias = crearSugerencias();
-	private Set<Comment> comments = new HashSet<Comment>();
+	private List<Suggestion> sugerencias = crearSugerencias();
+	private List<Comment> comments = new ArrayList<Comment>();
 	
 //	@Autowired
 //	public void setCommentService(CommentsService commentService) {
@@ -106,8 +105,8 @@ public class MainController {
         return "/login";
        }
    
-   private Set<Suggestion> crearSugerencias() {
-	   Set<Suggestion> suggestions = new HashSet<Suggestion>();
+   private List<Suggestion> crearSugerencias() {
+	   List<Suggestion> suggestions = new ArrayList<Suggestion>();
 	   Suggestion suggestion = new Suggestion((long)1,"Sugerencia1",ciudadano);
 	   suggestions.add(suggestion);
    		suggestion = new Suggestion((long)2,"Sugerencia2",ciudadano);
@@ -143,7 +142,8 @@ public class MainController {
     */
     
     @RequestMapping(value="/User/homeUsuario")
-    public String logHtml(Model model){
+    public String logHtml(Model model,HttpSession session){
+    	session.setAttribute("sugerencias",suggestionService.findAll());
     	return "User/homeUsuario";
     }
     

@@ -19,10 +19,10 @@ public class CommentServiceImpl implements CommentsService {
 		this.commentRepository = commentRepository;
 	}
 
-	//@Override
-	//public List<Comment> findBySuggestion(Suggestion suggestion) {
-	//	return commentRepository.fingBySuggestionEquals(suggestion);
-	//}
+	@Override
+	public List<Comment> findBySuggestion(Suggestion suggestion) {
+		return commentRepository.fingBySuggestionEquals(suggestion);
+	}
 
 	@Override
 	public List<Comment> findByCitizenDB(CitizenDB citizenDB) {

@@ -1,22 +1,19 @@
 package asw.dto.model;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import asw.dto.model.Suggestion;
 
 @Entity
 //@IdClass(CommentKey.class)
@@ -35,7 +32,7 @@ public class Comment {
 	private String text;
 	private int numero_votos;
 	@OneToMany(mappedBy = "comment")
-	private Set<VoteComment> voteComments = new HashSet<VoteComment>();
+	private List<VoteComment> voteComments = new ArrayList<VoteComment>();
 	
 	public Comment(){
 		
@@ -71,15 +68,15 @@ public class Comment {
 		this.text = text;
 	}
 
-	public Set<VoteComment> getVoteComments() {
+	public List<VoteComment> getVoteComments() {
 		return voteComments;
 	}
 	
-	Set<VoteComment> _getVoteComments() {
+	List<VoteComment> _getVoteComments() {
 		return voteComments;
 	}
 
-	public void setVoteComments(Set<VoteComment> voteComments) {
+	public void setVoteComments(List<VoteComment> voteComments) {
 		this.voteComments = voteComments;
 	}
 

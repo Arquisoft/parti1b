@@ -8,7 +8,7 @@ import asw.dto.model.Suggestion;
 
 public interface CommentsService {
 	
-	//List<Comment> findBySuggestion(Suggestion suggestion);
+	List<Comment> findBySuggestion(Suggestion suggestion);
 	List<Comment> findByCitizenDB(CitizenDB citizenDB);
 	List<Comment> findAll();
 	Comment fingById(long id);

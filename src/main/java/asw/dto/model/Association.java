@@ -1,10 +1,6 @@
 package asw.dto.model;
 
-import java.util.Set;
-
-import asw.dto.model.CitizenDB;
-import asw.dto.model.Suggestion;
-import asw.dto.model.Comment;
+import java.util.List;
 
 public class Association {
 	public static class Comentar {
@@ -69,7 +65,7 @@ public static class Sugerir {
 	public static void link(CitizenDB citizenDB, Suggestion suggestion) {
 		suggestion._setCitizenDB(citizenDB);
 		
-		Set<Suggestion> lista = citizenDB._getSugerencias();
+		List<Suggestion> lista = citizenDB._getSugerencias();
 		lista.add(suggestion);
 ;
 	}
