@@ -9,6 +9,5 @@ import asw.participants.acceso.ParticipantsLogin;
 
 public interface GetParticipant {
     public CitizenDB getCiudadano(String email);
-
     public CitizenDB getCiudadano(ParticipantsLogin participante);
 }

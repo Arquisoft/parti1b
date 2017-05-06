@@ -6,10 +6,6 @@ import asw.dto.model.Comment;
 import asw.dto.model.Estadistica;
 import asw.dto.model.Suggestion;
 
-
-
-
-
 public interface EstadisticaService {
 
 	public Estadistica nuevaSugerencia(Suggestion sugerencia);

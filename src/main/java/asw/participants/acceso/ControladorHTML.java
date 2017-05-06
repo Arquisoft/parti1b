@@ -87,8 +87,10 @@ public class ControladorHTML {
 				}
 
 				if(ciudadano != null){
-					if(ciudadano.getType().equals("ADMIN"))
+					if(ciudadano.getType().equals("POLITICO"))
 						return this.popularidadSugerencia(parametros, modelo);
+					if(ciudadano.getType().equals("ADMIN"))
+						return "Admin/home";
 					else
 						return "User/homeUsuario";
 				}
