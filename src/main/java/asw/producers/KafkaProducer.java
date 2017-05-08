@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import asw.dto.model.Comment;
 import asw.dto.model.Suggestion;
+import asw.listeners.KafkaTopics;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
+
+import java.util.ArrayList;
 
 import javax.annotation.ManagedBean;
 
@@ -29,49 +32,33 @@ public class KafkaProducer {
     @Autowired
     private ObjectMapper mapper;
 
-    private Suggestion sugerencia;
-    private Comment comentario;
+  
 
 
-//    @Scheduled(fixedDelay = 30000)
-//    public void sendNewSuggestion() {
-//        String sugerenciaJSON = "";
-//        sugerencia = randomGenerator.newSugerencia();
-//
-//        try {
-//            sugerenciaJSON = mapper.writeValueAsString(sugerencia);
-//            send("sugerencias", sugerenciaJSON);
-//        } catch (JsonProcessingException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void sendNewSuggestion(Suggestion suggestion) {
+        String sugerenciaJSON = "";
+       suggestion.setCitizenDB(null);
+       suggestion.setComments(new ArrayList<Comment>());
 
-//    @Scheduled(fixedDelay = 11000)
-//    public void sendNewComentario() {
-//        String comentarioJSON = "";
-//        comentario = randomGenerator.newComentario();
-//
-//        try {
-//            comentarioJSON = mapper.writeValueAsString(comentario);
-//            send("comentarios", comentarioJSON);
-//        } catch (JsonProcessingException e) {
-//            e.printStackTrace();
-//        }
-//    }
+        try {
+            sugerenciaJSON = mapper.writeValueAsString(suggestion);
+            send(KafkaTopics.NEW_SUGERENCE, sugerenciaJSON);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendNewComentario(Comment comment) {
+      send(KafkaTopics.NEW_COMENTARY, comment.getSuggestion().getTitle());        
+    }
     
-//    @Scheduled(fixedDelay = 7000)
-//    public void sendNewApoyo() {
-//        String comentarioJSON = "";
-//        comentario = randomGenerator.newComentario();
-//        comentario.setTexto("");
-//
-//        try {
-//            comentarioJSON = mapper.writeValueAsString(comentario);
-//            send("apoyos", comentarioJSON);
-//        } catch (JsonProcessingException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void sendNewApoyoSugerencia(Suggestion sugerencia) {
+       send(KafkaTopics.UPVOTE_SUGERENCE, sugerencia.getTitle());
+    }
+    
+    public void sendNewContraSugenrencia(Suggestion sugerencia) {
+        send(KafkaTopics.DOWNVOTE_SUGERENCE, sugerencia.getTitle());     
+    }
 
     public void send(String topic, String data) {
         ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic, data);

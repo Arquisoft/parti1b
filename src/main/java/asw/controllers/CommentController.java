@@ -17,6 +17,7 @@ import asw.dto.model.Suggestion;
 import asw.dto.model.VoteComment;
 import asw.dto.services.CommentsService;
 import asw.dto.services.SuggestionService;
+import asw.producers.KafkaProducer;
 
 
 @Scope("session")
@@ -32,6 +33,9 @@ public class CommentController {
 	private CommentsService commentsService;	
 //	@Autowired
 //	private VoteCommentService voteCommentService;
+	
+	@Autowired
+	private KafkaProducer kafkaProducer;
 	
 	private List<Suggestion> sugerencias = new ArrayList<Suggestion>();
 	private List<Comment> comments = new ArrayList<Comment>();
@@ -56,6 +60,8 @@ public class CommentController {
 		//comments = suggestion.getComments();
 		session.setAttribute("sugerencia", suggestion);
 		session.setAttribute("comments", comments);
+		
+		kafkaProducer.sendNewComentario(comment);
 		
 		return "User/comment";
 		

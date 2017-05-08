@@ -46,7 +46,12 @@ public class Comment {
 		this.id = id;
 	}
 
-	
+	public Comment(Suggestion suggestion , String text ){
+		this.date = Calendar.getInstance().getTime();
+		this.text = text;
+		this.numero_votos = 0;
+		this.idSugerencia=suggestion;
+	}
 	
 	public Long getId() {
 		return id;

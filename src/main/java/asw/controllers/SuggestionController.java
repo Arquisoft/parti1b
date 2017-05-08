@@ -16,6 +16,7 @@ import asw.dto.model.Comment;
 import asw.dto.model.Suggestion;
 import asw.dto.model.VoteSuggestion;
 import asw.dto.services.SuggestionService;
+import asw.producers.KafkaProducer;
 
 
 
@@ -26,6 +27,9 @@ public class SuggestionController {
 	//Descomentar cuando funciones service
 	@Autowired
 	private SuggestionService suggestionService;
+	
+	@Autowired
+	private KafkaProducer kafkaProducer;
 
 	public void setSuggestionService(SuggestionService suggestionService) {
 		this.suggestionService = suggestionService;
@@ -44,6 +48,7 @@ public class SuggestionController {
 		suggestionService.createSuggestion(suggestion);
 		sugerencias = suggestionService.findAll();
 		session.setAttribute("sugerencias", sugerencias);
+		kafkaProducer.sendNewSuggestion(suggestion);
 
 		// AHORA 
 		session.setAttribute("sugerencias", sugerencias);
@@ -78,6 +83,8 @@ public class SuggestionController {
 		//}
 		//}
 		session.setAttribute("sugerencias", suggestions);
+		kafkaProducer.sendNewApoyoSugerencia(suggestion);
+
 		return "User/homeUsuario";
 	}
 
@@ -109,6 +116,8 @@ public class SuggestionController {
 				//}
 		}
 		session.setAttribute("sugerencias", suggestions);
+		
+		kafkaProducer.sendNewContraSugenrencia(suggestion);
 
 		return "User/homeUsuario";
 	}

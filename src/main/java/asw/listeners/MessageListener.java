@@ -52,20 +52,11 @@ public class MessageListener implements ApplicationEventPublisherAware{
     @KafkaListener( topics = KafkaTopics.NEW_COMENTARY)
     public void listenComentarios(String data) {
     	
-    	try {
-			Comment comentario = mapper.readValue(data, Comment.class);
-			logger.info("*****************\n"+"Comentario: "+comentario.getText());
-			publisher.publishEvent(comentario);
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    
+			//Comment comentario = mapper.readValue(data, Comment.class);
+			logger.info("*****************\n"+"Comentario: "+data);
+			publisher.publishEvent(new VoteEvent(data,KafkaTopics.NEW_COMENTARY));
+		
 
     	
         logger.info("New message received: \"" + data + "\"");
@@ -73,50 +64,35 @@ public class MessageListener implements ApplicationEventPublisherAware{
     
     @KafkaListener( topics = KafkaTopics.UPVOTE_SUGERENCE)
     public void listenApoyo(String data) {
-    	try {
-			Comment comentario = mapper.readValue(data, Comment.class);
-			logger.info("*****************\n"+"Apoyo: "+comentario.getSuggestion().getTitle());
-			publisher.publishEvent(new VoteEvent(comentario.getSuggestion().getTitle()));
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	
+			logger.info("*****************\n"+"Apoyo: "+data);
+			publisher.publishEvent(new VoteEvent(data,KafkaTopics.UPVOTE_SUGERENCE));
+	
         logger.info("New message received: \"" + data + "\"");
     }
     
     @KafkaListener( topics = KafkaTopics.DOWNVOTE_SUGERENCE)
     public void listenDesacuerdo(String data){
-    	try {
-			Comment comentario = mapper.readValue(data, Comment.class);
-			logger.info("*****************\n"+"Desacuerdo: "+comentario.getSuggestion().getTitle());
-			publisher.publishEvent(new VoteEvent(comentario.getSuggestion().getTitle()));
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    
+			logger.info("*****************\n"+"Desacuerdo: "+data);
+			publisher.publishEvent(new VoteEvent(data,KafkaTopics.DOWNVOTE_SUGERENCE));
+		
         logger.info("New message received: \"" + data + "\"");
     }
     
     public class VoteEvent{
     	private String titulo;
+    	private String tipo;
     	
-    	public VoteEvent(String titulo){
+    	public VoteEvent(String titulo, String tipo){
     		this.titulo = titulo;
+    		this.tipo = tipo;
     	}
     	
     	public String getTitulo(){ return this.titulo; }
+    	public String getTipo(){ return this.tipo; }
+
+    	
     }
     
     @Override

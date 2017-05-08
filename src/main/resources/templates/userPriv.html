@@ -29,20 +29,22 @@
 		 var sugerence = JSON.parse(event.data);
 
 		 var t = document.getElementById("table");
+		 window.console.log(" El valor de tipo " + sugerence.tipo);
+
 		 if(sugerence.tipo === "newSugerence"){
 			 var row = t.insertRow(-1);
 			 row.insertCell(0).innerHTML = "<td>" + sugerence.title + "</td>";
 			 row.insertCell(1).innerHTML = "<td>" + 0 + "</td>";
 			 row.insertCell(2).innerHTML = "<td>" + 0 + "</td>";
 		 }
-
+		 
 		 else if ( sugerence.tipo === "newComentary"){
 			 var ac = document.getElementsByTagName("tr");
 			 for (let elem of ac){
 				 var celdas = elem.children;   
 				 if(celdas[0].textContent === sugerence.title){
 					 var value = parseInt(celdas[1].textContent);		
-					 window.console.log(" El valor "+celdas[1].textContent+" el value "+value );
+					 window.console.log(" El valor Nuevo comentario "+celdas[1].textContent+" el value "+value );
 
 					 celdas[1].textContent = value+1;
 				    }
@@ -54,7 +56,7 @@
 				 var celdas = elem.children;      
 				 if(celdas[0].textContent === sugerence.title){
 					 var value = parseInt(celdas[2].textContent);		
-					 window.console.log(" El valor "+celdas[2].textContent+" el value "+value );
+					 window.console.log(" El valor upvote " + sugerence.tipo+" as "+celdas[2].textContent+" el value "+value );
 				
 					 celdas[2].textContent = value+1;
 				    
@@ -62,13 +64,13 @@
 				    }
 			 }
 		 }
-		 else if( sugerence.tipo == "downvote"){
-			 var ac = document.getElementsByYagName("tr");
+		 else if( sugerence.tipo === "downvote"){
+			 var ac = document.getElementsByTagName("tr");
 			 for (let elem of ac){
 				 var celdas = elem.children;      
 				 if(celdas[0].textContent === sugerence.title){
 					 var value = parseInt(celdas[2].textContent);		
-					 window.console.log(" El valor "+celdas[2].textContent+" el value "+value );
+					 window.console.log(" El valor downvote "+celdas[2].textContent+" el value "+value );
 				
 					 celdas[2].textContent = value-1;
 				    

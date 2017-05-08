@@ -3,5 +3,5 @@ spring:
         stream:
             kafka:
                 binder:
-                    brokers: 52.16.85.73
-                    zk-nodes: 52.16.85.73
+                    brokers: localhost
+                    zk-nodes: localhost
