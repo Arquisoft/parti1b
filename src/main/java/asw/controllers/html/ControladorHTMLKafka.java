@@ -16,6 +16,7 @@ import asw.DBManagement.model.Suggestion;
 import asw.controllers.util.estadistica.Estadistica;
 import asw.controllers.util.estadistica.EstadisticaService;
 import asw.kafka.listeners.KafkaTopics;
+import asw.kafka.listeners.MessageListener.SugerenceEvent;
 import asw.kafka.listeners.MessageListener.VoteEvent;
 
 @Controller
@@ -43,6 +44,21 @@ public class ControladorHTMLKafka {
 		System.out.println("Evento escuchado!");
 		SseEventBuilder newSugerenceEvent = SseEmitter.event().name("evento").data("{ \"tipo\": \"newSugerence\" , \"title\":\"" + data.getTitle() + "\"}");
 		sendEvent(newSugerenceEvent);
+	}
+	
+	@RequestMapping( value = "/editComentary")
+	@EventListener
+	public void newComentary(SugerenceEvent data){
+		if(data.getTipo()==KafkaTopics.DELETE_SUGERENCE)
+		{	
+			SseEventBuilder newComentaryEvent = SseEmitter.event().name("evento").data("{ \"tipo\": \"deleteSugerence\" ,  \"title\":\"" + data.getTitulo() +"\" }");
+			sendEvent(newComentaryEvent);
+		}
+		else if(data.getTipo()==KafkaTopics.SUGERENCE_EDIT)
+		{
+			SseEventBuilder newComentaryEvent = SseEmitter.event().name("evento").data("{ \"tipo\": \"editSugerence\" ,  \"title\":\"" + data.getTitulo() +"\",  \"antiguo\":\"" + data.getAntiguo() +"\" }");
+			sendEvent(newComentaryEvent);
+		}
 	}
 	
 	@RequestMapping( value = "/newComentary")

@@ -10,7 +10,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import asw.DBManagement.model.Comment;
 import asw.DBManagement.model.Suggestion;
 
 import java.io.IOException;
@@ -48,17 +47,42 @@ public class MessageListener implements ApplicationEventPublisherAware{
 		}
 
 	}
+    
+    @KafkaListener(topics = KafkaTopics.SUGERENCE_EDIT)
+    public void listenEditSugerencias(String data) {
+    	String[] titulos = data.split("%");
+		logger.info("*****************\n"+"Sugerencia: "+titulos[0]);
+		publisher.publishEvent(new SugerenceEvent(titulos[0],titulos[1], KafkaTopics.SUGERENCE_EDIT));
+	}
+    
+    
+    @KafkaListener(topics = KafkaTopics.DELETE_SUGERENCE)
+    public void listenDeleteSugerencias(String data) {
+    	
+    	try {
+			Suggestion sugerencia = mapper.readValue(data, Suggestion.class);
+			logger.info("*****************\n"+"Sugerencia: "+sugerencia.getTitle());
+			publisher.publishEvent(new SugerenceEvent(sugerencia.getTitle(), KafkaTopics.DELETE_SUGERENCE));
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+
 
     @KafkaListener( topics = KafkaTopics.NEW_COMENTARY)
     public void listenComentarios(String data) {
-    	
-    
-			//Comment comentario = mapper.readValue(data, Comment.class);
-			logger.info("*****************\n"+"Comentario: "+data);
-			publisher.publishEvent(new VoteEvent(data,KafkaTopics.NEW_COMENTARY));
-		
-
-    	
+		logger.info("*****************\n"+"Comentario: "+data);
+		publisher.publishEvent(new VoteEvent(data,KafkaTopics.NEW_COMENTARY));
+	
         logger.info("New message received: \"" + data + "\"");
     }
     
@@ -91,6 +115,29 @@ public class MessageListener implements ApplicationEventPublisherAware{
     	
     	public String getTitulo(){ return this.titulo; }
     	public String getTipo(){ return this.tipo; }
+
+    	
+    }
+    
+    public class SugerenceEvent{
+    	private String titulo;
+    	private String antiguo;
+    	private String tipo;
+    	
+    	public SugerenceEvent(String titulo, String tipo){
+    		this.titulo = titulo;
+    		this.tipo = tipo;
+    	}
+    	
+    	public SugerenceEvent(String titulo, String antiguo, String tipo){
+    		this.titulo = titulo;
+    		this.tipo = tipo;
+    		this.antiguo = antiguo;
+    	}
+    	
+    	public String getTitulo(){ return this.titulo; }
+    	public String getTipo(){ return this.tipo; }
+    	public String getAntiguo(){ return this.antiguo; }
 
     	
     }

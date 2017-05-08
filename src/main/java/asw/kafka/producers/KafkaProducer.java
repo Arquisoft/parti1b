@@ -46,6 +46,22 @@ public class KafkaProducer {
             e.printStackTrace();
         }
     }
+    
+    public void sendEditSuggestion(String suggestion) {
+       send(KafkaTopics.SUGERENCE_EDIT, suggestion);
+    }
+    public void sendDeleteSuggestion(Suggestion suggestion) {
+        String sugerenciaJSON = "";
+       suggestion.setCitizenDB(null);
+       suggestion.setComments(new ArrayList<Comment>());
+
+        try {
+            sugerenciaJSON = mapper.writeValueAsString(suggestion);
+            send(KafkaTopics.DELETE_SUGERENCE, sugerenciaJSON);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void sendNewComentario(Comment comment) {
       send(KafkaTopics.NEW_COMENTARY, comment.getSuggestion().getTitle());        

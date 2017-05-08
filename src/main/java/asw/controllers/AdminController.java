@@ -19,6 +19,7 @@ import asw.DBManagement.services.CommentsService;
 import asw.DBManagement.services.SuggestionService;
 import asw.DBManagement.services.VoteCommentService;
 import asw.DBManagement.services.VoteSuggestionService;
+import asw.kafka.producers.KafkaProducer;
 
 @Scope("session")
 @Controller
@@ -37,6 +38,8 @@ public class AdminController {
 	
 	private VoteSuggestionService vSuggestionService;
 	
+	@Autowired
+	private KafkaProducer kafkaProducer;
 		
 	private List<Suggestion> sugerencias = new ArrayList<Suggestion>();
 	private List<Comment> comments = new ArrayList<Comment>();
@@ -66,6 +69,7 @@ public class AdminController {
 		   
 		   suggestionService.deleteSuggestion(suggestion);
 		   session.setAttribute("sugerencias", suggestionService.findAll());
+	    	this.kafkaProducer.sendDeleteSuggestion(suggestion);
 		   return "admin/home";
 	    }
 	       	
@@ -74,13 +78,15 @@ public class AdminController {
     			@RequestParam String contenido,HttpSession session){
 
     		Suggestion suggestion = (Suggestion) session.getAttribute("sugerencia");
+    		String tituloAnt= suggestion.getTitle();
     		suggestion.setTitle(titulo);
     		suggestion.setContent(contenido);
     		suggestionService.update(suggestion);
     		sugerencias = suggestionService.findAll();
   
     		session.setAttribute("sugerencias", sugerencias);
-    		
+	    	this.kafkaProducer.sendEditSuggestion(tituloAnt+"%"+suggestion.getTitle());
+
        		return "admin/home";
     	}
 

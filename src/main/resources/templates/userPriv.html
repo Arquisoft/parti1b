@@ -78,6 +78,32 @@
 				    }
 			 }
 		 }
+		 else if( sugerence.tipo === "editSugerence"){
+			 var ac = document.getElementsByTagName("tr");
+			 for (let elem of ac){
+				 var celdas = elem.children;      
+				 if(celdas[0].textContent === sugerence.title){
+					 var value = parseInt(celdas[2].textContent);		
+					 window.console.log(" El valor downvote "+celdas[2].textContent+" el value "+value );
+				
+					 celdas[0].textContent = sugerence.antiguo;
+				    
+				     break;
+				    }
+			 }
+		 }
+		 else if( sugerence.tipo === "deleteSugerence"){
+			 var ac = document.getElementsByTagName("tr");
+			 var contador=0;
+			 for (let elem of ac){
+				 var celdas = elem.children;      
+				 if(celdas[0].textContent === sugerence.title){
+					t.deleteRow(contador);
+				     break;
+				  }
+				 contador = contador+1;
+			 }
+		 }
 	 });
 	 
 </script>

@@ -9,5 +9,8 @@ public class KafkaTopics {
 	public final static String DOWNVOTE_SUGERENCE = "downvotSugerence";
 	
 	public final static String SUGERENCE_VOTING_PHASE = "sugerenceVotingPhase";
+	
+	public final static String SUGERENCE_EDIT = "sugerenceEdit";
+
 
 }
