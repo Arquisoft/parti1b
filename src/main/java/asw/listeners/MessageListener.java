@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.messaging.handler.annotation.Payload;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -13,9 +12,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import asw.dto.model.Comment;
 import asw.dto.model.Suggestion;
-import asw.dto.repository.CommentRepository;
-import asw.dto.repository.SuggestionRepository;
-import asw.participants.acceso.ControladorHTML;
 
 import java.io.IOException;
 

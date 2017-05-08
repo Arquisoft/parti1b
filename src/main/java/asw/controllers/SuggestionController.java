@@ -49,7 +49,7 @@ public class SuggestionController {
 		
 		// AHORA 
 		session.setAttribute("sugerencias", sugerencias);
-		
+	
 		return "User/homeUsuario";
 		
 }
