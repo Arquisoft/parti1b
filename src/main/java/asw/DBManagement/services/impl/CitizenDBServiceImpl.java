@@ -14,7 +14,9 @@ public class CitizenDBServiceImpl implements CitizenDBService {
 	
 	@Autowired
 	private CitizenDBRepository citizenDBRepository;
+	@SuppressWarnings("unused")
 	private SuggestionRepository suggestionRepository;
+	@SuppressWarnings("unused")
 	private CommentRepository commentRepository;
 
 	@Autowired
@@ -42,9 +44,5 @@ public class CitizenDBServiceImpl implements CitizenDBService {
 		CitizenDB citizen = this.citizenDBRepository.save(citizenDB);
 		return citizen;
 	}
-	
-	//@Override
-	//public CitizenDB getByLogin(String login){
-	//	return citizenDBRepository.findByLogin(login);
-	//}
+
 }

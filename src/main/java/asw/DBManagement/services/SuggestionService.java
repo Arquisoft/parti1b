@@ -1,7 +1,6 @@
 package asw.DBManagement.services;
 
 import java.util.List;
-import java.util.Set;
 
 import asw.DBManagement.model.CitizenDB;
 import asw.DBManagement.model.Suggestion;

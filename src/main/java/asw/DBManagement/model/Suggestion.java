@@ -142,10 +142,6 @@ public class Suggestion {
 		return true;
 	}
 
-	//public void saveSuggestion(){
-		//bd.insert_suggestion()...
-	//}
-
 	public String getContent() {
 		return content;
 	}

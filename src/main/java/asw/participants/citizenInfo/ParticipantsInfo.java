@@ -8,8 +8,6 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.springframework.stereotype.Component;
-
 import asw.DBManagement.model.CitizenDB;
 
 @XmlRootElement(name = "ParticipantInfo")

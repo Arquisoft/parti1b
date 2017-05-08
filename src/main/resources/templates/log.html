@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org"> <!-- Es la referencia que nos va a permitir utilizar las etiquetas -->
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-sale=1, shrink-to-fit=no"/>
+
+    <title>Login participationSystem1b</title>
+
+    <!-- Añadiendo el Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+    <!--Pulling Awesome Font -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- Añadiendo Javascript para que funcione correctamente -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Custom styles for this template -->
+    <link href="css/login.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-5 col-md-3">
+            <form action="/login" th:action="@{/login}" method="post" class="form-login" >
+                <h4 class="form-login-head">Welcome back!</h4>
+                <label for="email">Usuario:</label>
+                <input type="text" id="email" name="email" class="form-control input-sm chat-input" placeholder="username" />
+                <br/>
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="id" class="form-control input-sm chat-input" placeholder="password" />
+                <br/>
+                <div class="wrapper">
+            <span class="group-btn">
+                <button class="btn btn-primary btn-md" type="submit">login<i class="fa fa-sign-in"></i></button>
+            </span>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

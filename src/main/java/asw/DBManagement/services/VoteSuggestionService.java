@@ -10,8 +10,8 @@ public interface VoteSuggestionService {
 
 	List<VoteSuggestion> findBySuggestion (Suggestion suggestion);
 	List<VoteSuggestion> findByCitizenDB(CitizenDB citizen);
-	//VoteSuggestion findByVoteCommentKey(VoteSuggestionKey voteSuggestionKey);
 	
 	VoteSuggestion createVoteSuggestion(VoteSuggestion voteSuggestion);
 	void deleteVoteSuggestion (VoteSuggestion voteSuggestion);
+	VoteSuggestion findByCitizenDBAndSuggestion(CitizenDB citizen, Suggestion suggestion);
 }

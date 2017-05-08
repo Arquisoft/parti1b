@@ -12,45 +12,53 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import asw.DBManagement.model.CitizenDB;
-import asw.DBManagement.model.Comment;
 import asw.DBManagement.model.Suggestion;
 import asw.DBManagement.model.VoteSuggestion;
 import asw.DBManagement.services.SuggestionService;
+import asw.DBManagement.services.VoteSuggestionService;
+import asw.controllers.util.censura.Censura;
 import asw.kafka.producers.KafkaProducer;
-
 
 
 @Scope("session")
 @Controller
 public class SuggestionController {
 
-	//Descomentar cuando funciones service
 	@Autowired
 	private SuggestionService suggestionService;
-	
+
+	@Autowired
+	private VoteSuggestionService voteSuggestionService;
+
 	@Autowired
 	private KafkaProducer kafkaProducer;
+	private Censura censura = new Censura();
 
 	public void setSuggestionService(SuggestionService suggestionService) {
 		this.suggestionService = suggestionService;
 	}
 
+	public void setVoteSuggestionService(VoteSuggestionService voteSuggestionService) {
+		this.voteSuggestionService = voteSuggestionService;
+	}
+
 	private List<Suggestion> sugerencias = new ArrayList<Suggestion>();
-	private List<Comment> comments = new ArrayList<Comment>();
 
 	@RequestMapping(value="/User/suggestion/makeSuggestion")
 	public String makeSuggestion(@RequestParam String titulo, @RequestParam String contenido, HttpSession session){
 
 		CitizenDB user = (CitizenDB) session.getAttribute("usuario");
+		titulo = censura.censurar(titulo);
+		contenido = censura.censurar(contenido);
 		Suggestion suggestion = new Suggestion((long)user.getSugerencias().size()+1,titulo, user);
+		
 		suggestion.setContent(contenido);
-		//Esto cuando funcione el service
+	
 		suggestionService.createSuggestion(suggestion);
 		sugerencias = suggestionService.findAll();
 		session.setAttribute("sugerencias", sugerencias);
 		kafkaProducer.sendNewSuggestion(suggestion);
 
-		// AHORA 
 		session.setAttribute("sugerencias", sugerencias);
 
 		return "User/homeUsuario";
@@ -61,84 +69,38 @@ public class SuggestionController {
 	public String votePosSuggestion(String id_sug,HttpSession session){
 
 		Suggestion suggestion = suggestionService.findById(Long.parseLong(id_sug));
-		
-		List<Suggestion> suggestions = (List<Suggestion>) session.getAttribute("sugerencias");
-		for(Suggestion sug : suggestions)
-			if(sug.getId() == Long.parseLong(id_sug))
-				suggestion = sug;
+		CitizenDB ciudadano = (CitizenDB) session.getAttribute("usuario");
 
-		//boolean existe = false;		 	
-		CitizenDB user = (CitizenDB) session.getAttribute("usuario");
-		//for(VoteSuggestion voteSuggestion: user.getVotesSugerencias())
-		//	if(voteSuggestion.getSuggestion().getId() == Long.parseLong(id_sug))
-		//		existe = true;
-		//if(!existe){
-
-		//VoteSuggestion  voteSuggestion = new VoteSuggestion((long)1,user,suggestion);
-		//List<Suggestion> aux = (List<Suggestion>) session.getAttribute("sugerencias");
-		//for(Suggestion suggestion2 : aux)
-		//if(suggestion2.getId() == Long.parseLong(id_sug)){ //sino nos quedaríamos en negativo en los votos
-		suggestion.setNum_votes(suggestion.getNum_votes()+1);
-		suggestionService.update(suggestion);
-		//}
-		//}
-		session.setAttribute("sugerencias", suggestions);
-		kafkaProducer.sendNewApoyoSugerencia(suggestion);
-
+		VoteSuggestion vs = voteSuggestionService.findByCitizenDBAndSuggestion(ciudadano, suggestion);
+		if(vs == null){
+			vs = new VoteSuggestion(ciudadano, suggestion);
+			voteSuggestionService.createVoteSuggestion(vs);
+			suggestion.setNum_votes(suggestion.getNum_votes()+1);
+			suggestionService.update(suggestion);
+			session.setAttribute("sugerencias", suggestionService.findAll());
+			kafkaProducer.sendNewApoyoSugerencia(suggestion);
+		}
 		return "User/homeUsuario";
 	}
 
 	@RequestMapping(value="/votaNegSuggestion")
 	public String voteNegSuggestion(String id_sug,HttpSession session){
-		
+
 		Suggestion suggestion = suggestionService.findById(Long.parseLong(id_sug));
+		CitizenDB ciudadano = (CitizenDB) session.getAttribute("usuario");
 
-		List<Suggestion> suggestions = (List<Suggestion>) session.getAttribute("sugerencias");
-		for(Suggestion sug : suggestions)
-			if(sug.getId() == Long.parseLong(id_sug))
-				suggestion = sug;
-
-		//boolean existe = false;		 	
-		CitizenDB user = (CitizenDB) session.getAttribute("usuario");
-		//for(VoteSuggestion voteSuggestion: user.getVotesSugerencias())
-			//if(voteSuggestion.getSuggestion().getId() == Long.parseLong(id_sug))
-			//	existe = true;
-		//if(!existe){
-
-			//VoteSuggestion  voteSuggestion = new VoteSuggestion((long)1,user,suggestion);
-			List<Suggestion> aux = (List<Suggestion>) session.getAttribute("sugerencias");
-			for(Suggestion suggestion2 : aux)
-				if(suggestion2.getId() == Long.parseLong(id_sug)){
-					if(suggestion2.getNum_votes()>0){//sino nos quedaríamos en negativo en los votos
-						suggestion2.setNum_votes(suggestion2.getNum_votes()-1);
-						suggestionService.update(suggestion2);
-					}
-				//}
+		VoteSuggestion vs = voteSuggestionService.findByCitizenDBAndSuggestion(ciudadano, suggestion);
+		if(vs == null){
+			vs = new VoteSuggestion(ciudadano, suggestion);
+			if(suggestion.getNum_votes() > 0)
+			{
+				voteSuggestionService.createVoteSuggestion(vs);
+				suggestion.setNum_votes(suggestion.getNum_votes()-1);
+				suggestionService.update(suggestion);
+				session.setAttribute("sugerencias", suggestionService.findAll());
+				kafkaProducer.sendNewApoyoSugerencia(suggestion);
+			}
 		}
-		session.setAttribute("sugerencias", suggestions);
-		
-		kafkaProducer.sendNewContraSugenrencia(suggestion);
-
 		return "User/homeUsuario";
 	}
-
-	//De momento no funciona correctamente
-	//    @RequestMapping(value="/User/suggestion")
-	//    public String goMakeSuggestion(@RequestParam String id_sug,HttpSession session){
-	//    	//de nuevo en este método
-	//    	//sería lógico buscar la sugerencia
-	//    	//por id a través de un servicio
-	//    	//no obstante a falta de funcionamiento de los mismos iré
-	//    	//buscando las sugerencias en la lista creada 
-	//    	//en la misma session del usuario
-	//    	Long id = Long.parseLong(id_sug);
-	//		//Descomentar cuando solucionemos el error
-	////    	Suggestion suggestion = new Suggestion();
-	////    	suggestion = SuggestionService.findById(id);
-	//		
-	////    	session.setAttribute("sugerencia", suggestion);
-	//    	
-	//    	return "User/suggestion";
-	//    }
-
 }

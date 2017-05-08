@@ -11,8 +11,9 @@ public interface VoteCommentService {
 
 	List<VoteComment> findByComment (Comment comment);
 	List<VoteComment> findByCitizenDB(CitizenDB citizen);
-	//VoteComment findByVoteCommentKey(VoteCommentKey voteCommentKey);
 	
 	VoteComment createVoteComment (VoteComment voteComment);
 	void deleteVoteComment (VoteComment voteComment);
+	VoteComment findByCitizenDBAndComment(CitizenDB citizen, Comment comment);
+
 }

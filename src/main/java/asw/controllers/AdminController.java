@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import asw.DBManagement.model.Comment;
 import asw.DBManagement.model.Suggestion;
-import asw.DBManagement.services.CitizenDBService;
 import asw.DBManagement.services.CommentsService;
 import asw.DBManagement.services.SuggestionService;
-import asw.DBManagement.services.VoteCommentService;
-import asw.DBManagement.services.VoteSuggestionService;
 import asw.kafka.producers.KafkaProducer;
 
 @Scope("session")
@@ -26,23 +23,15 @@ import asw.kafka.producers.KafkaProducer;
 public class AdminController {
 	
 	@Autowired
-	private CitizenDBService citizenService;
-	
-	@Autowired
 	private CommentsService commentService;
 	
 	@Autowired
 	private SuggestionService suggestionService;
 	
-	private VoteCommentService vCommentService;
-	
-	private VoteSuggestionService vSuggestionService;
-	
 	@Autowired
 	private KafkaProducer kafkaProducer;
 		
 	private List<Suggestion> sugerencias = new ArrayList<Suggestion>();
-	private List<Comment> comments = new ArrayList<Comment>();
 	
 	 @RequestMapping(value="/admin/home")
 	    public String adminHome(Model model){
@@ -51,7 +40,8 @@ public class AdminController {
 	 
 	 @RequestMapping(value="/admin/edit")
 	    public String adminEdit(String id_sug,HttpSession session){
-	     	List<Suggestion> aux = (List<Suggestion>) session.getAttribute("sugerencias");
+	     	@SuppressWarnings("unchecked")
+			List<Suggestion> aux = (List<Suggestion>) session.getAttribute("sugerencias");
 	    	for(Suggestion sug : aux)
 	    		if(sug.getId() == Long.parseLong(id_sug)){
 	    			session.setAttribute("sugerencia", sug);

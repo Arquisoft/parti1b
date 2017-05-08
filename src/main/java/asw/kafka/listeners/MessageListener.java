@@ -36,13 +36,10 @@ public class MessageListener implements ApplicationEventPublisherAware{
 			logger.info("*****************\n"+"Sugerencia: "+sugerencia.getTitle());
 			publisher.publishEvent(sugerencia);
 		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -64,13 +61,10 @@ public class MessageListener implements ApplicationEventPublisherAware{
 			logger.info("*****************\n"+"Sugerencia: "+sugerencia.getTitle());
 			publisher.publishEvent(new SugerenceEvent(sugerencia.getTitle(), KafkaTopics.DELETE_SUGERENCE));
 		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

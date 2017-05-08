@@ -16,7 +16,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-//@IdClass(CommentKey.class)
 @Table(name = "comentario")
 public class Comment {
 	
@@ -80,7 +79,7 @@ public class Comment {
 	List<VoteComment> _getVoteComments() {
 		return voteComments;
 	}
-
+	
 	public void setVoteComments(List<VoteComment> voteComments) {
 		this.voteComments = voteComments;
 	}

@@ -4,13 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
 @Entity
-//@IdClass(VoteCommentKey.class)
 @Table(name="voteComment")
 public class VoteComment {
 	
@@ -25,17 +23,16 @@ public class VoteComment {
 	public VoteComment() {
 	}
 	
-	public VoteComment(long id ,Comment comment , CitizenDB citizenDB){
+	public VoteComment(Long id,Comment comment , CitizenDB citizenDB){
 		Association.votarComentario.link(citizenDB, comment, this);
-		this.id = id;
+		this.id=id;
 	}
 	
 	public VoteComment(Comment comment , CitizenDB citizenDB){
 		Association.votarComentario.link(citizenDB, comment, this);
 	}
-	
-	
 
+	
 	public Long getId() {
 		return id;
 	}

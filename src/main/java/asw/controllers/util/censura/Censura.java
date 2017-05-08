@@ -2,34 +2,27 @@ package asw.controllers.util.censura;
 
 import java.util.ArrayList;
 
-import asw.DBManagement.model.Comment;
-import asw.DBManagement.model.Suggestion;
-
 public class Censura {
 
-	private static ArrayList<String> palabrasCensuradas = new ArrayList<String>();
-	private static Comment comment;
-	
-	public Censura (Comment comment){
-		this.comment = comment;
-	}
+	private ArrayList<String> palabrasCensuradas = new ArrayList<String>();
 
-	public static void cargarCensuras() {
+	public void cargarCensuras() {
 		palabrasCensuradas = new ArrayList<String>();
-		//Faltaria encontrar una lista de palabras "prohibidas"
+		palabrasCensuradas.add("cabron");
+		palabrasCensuradas.add("mierda");
+		palabrasCensuradas.add("imbecil");
 	}
 
 	/*
 	 * Metodo para censurar palabras no permitidas
 	 */
-	public static void censurar(Suggestion suggestion) {
-		String contenido = suggestion.getContent();
+	public String censurar(String texto) {
 		for (int i = 0; i < palabrasCensuradas.size(); i++) {
-			if (contenido.contains(palabrasCensuradas.get(i))) {
-				contenido.replace(palabrasCensuradas.get(i), "****");
+			if (texto.contains(palabrasCensuradas.get(i))) {
+				texto.replace(palabrasCensuradas.get(i), "****");
 			}
 		}
-
+		return texto;
 	}
 
 }

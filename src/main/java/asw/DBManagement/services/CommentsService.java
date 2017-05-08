@@ -14,4 +14,5 @@ public interface CommentsService {
 	Comment findById(long id);
 	Comment createComment(Comment comment);
 	void deleteComment(Comment comment);
+	void update(Comment comment);
 }
