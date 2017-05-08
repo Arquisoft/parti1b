@@ -48,9 +48,12 @@ public class UserController {
 	    	//no obstante a falta de funcionamiento de los mismos iré
 	    	//buscando las sugerencias en la lista creada 
 	    	//en la misma session del usuario
-	    	
-	    	
 	    	return "User/suggestion";
 	    }	
 	
+	  @RequestMapping(value="/User/home")
+	  public String goUserHome(HttpSession session){
+		  session.setAttribute("sugerencias",suggestionService.findAll());
+		  return "User/homeUsuario";
+	  }
 }

@@ -78,9 +78,7 @@ public class MainController {
 //	}
 	
     @RequestMapping(value="/")
-    public String landing(HttpSession session, Model model) {
-    	//crearUsuario();  da un error (Oliver), hay q revisarlo
-    	    	
+    public String landing(HttpSession session, Model model) {    	    	
         return "/login";
        }
    
