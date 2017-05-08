@@ -1,7 +1,7 @@
 package asw.participants_original.acceso;
 
 import asw.Application;
-import asw.participants.acceso.ControladorHTML;
+import asw.controllers.html.ControladorHTML;
 
 import org.junit.Before;
 import org.junit.Test;

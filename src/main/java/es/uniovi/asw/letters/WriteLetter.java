@@ -2,7 +2,7 @@ package es.uniovi.asw.letters;
 
 import java.io.IOException;
 
-import asw.dto.model.CitizenDB;
+import asw.DBManagement.model.CitizenDB;
 
 
 /**

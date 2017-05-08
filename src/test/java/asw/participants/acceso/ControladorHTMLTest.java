@@ -1,6 +1,8 @@
 package asw.participants.acceso;
 
 import asw.Application;
+import asw.controllers.html.ControladorHTML;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -12,13 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import asw.dto.model.Comment;
-import asw.dto.model.Suggestion;
-import asw.dto.services.CitizenDBService;
-import asw.dto.services.CommentsService;
-import asw.dto.services.SuggestionService;
-import asw.dto.services.VoteCommentService;
-import asw.dto.services.VoteSuggestionService;
+import asw.DBManagement.model.Comment;
+import asw.DBManagement.model.Suggestion;
+import asw.DBManagement.services.CitizenDBService;
+import asw.DBManagement.services.CommentsService;
+import asw.DBManagement.services.SuggestionService;
+import asw.DBManagement.services.VoteCommentService;
+import asw.DBManagement.services.VoteSuggestionService;
 
 @Scope("session")
 @Controller

@@ -11,12 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import asw.dto.model.CitizenDB;
-import asw.dto.model.Comment;
-import asw.dto.model.Suggestion;
-import asw.dto.model.VoteSuggestion;
-import asw.dto.services.SuggestionService;
-import asw.producers.KafkaProducer;
+import asw.DBManagement.model.CitizenDB;
+import asw.DBManagement.model.Comment;
+import asw.DBManagement.model.Suggestion;
+import asw.DBManagement.model.VoteSuggestion;
+import asw.DBManagement.services.SuggestionService;
+import asw.kafka.producers.KafkaProducer;
 
 
 

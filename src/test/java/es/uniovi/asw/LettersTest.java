@@ -14,7 +14,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import asw.dto.model.CitizenDB;
+import asw.DBManagement.model.CitizenDB;
 import es.uniovi.asw.parser.GenerationPassword;
 import es.uniovi.asw.letters.*;
 

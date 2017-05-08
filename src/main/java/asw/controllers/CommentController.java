@@ -11,13 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import asw.dto.model.CitizenDB;
-import asw.dto.model.Comment;
-import asw.dto.model.Suggestion;
-import asw.dto.model.VoteComment;
-import asw.dto.services.CommentsService;
-import asw.dto.services.SuggestionService;
-import asw.producers.KafkaProducer;
+import asw.DBManagement.model.CitizenDB;
+import asw.DBManagement.model.Comment;
+import asw.DBManagement.model.Suggestion;
+import asw.DBManagement.model.VoteComment;
+import asw.DBManagement.services.CommentsService;
+import asw.kafka.producers.KafkaProducer;
 
 
 @Scope("session")

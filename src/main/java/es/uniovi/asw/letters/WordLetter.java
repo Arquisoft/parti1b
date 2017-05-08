@@ -9,7 +9,7 @@ import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 
-import asw.dto.model.CitizenDB;
+import asw.DBManagement.model.CitizenDB;
 
 /**
  * Clase que implementa la interfaz WriterLetter para el envío de cartas con formato .doc

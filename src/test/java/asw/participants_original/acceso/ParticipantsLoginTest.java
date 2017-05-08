@@ -1,7 +1,7 @@
 package asw.participants_original.acceso;
 
 import asw.Application;
-import asw.participants.acceso.ParticipantsLogin;
+import asw.participants.citizenInfo.ParticipantsLogin;
 
 import org.junit.Before;
 import org.junit.Test;

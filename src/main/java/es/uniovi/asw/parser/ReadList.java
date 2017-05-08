@@ -2,7 +2,7 @@ package es.uniovi.asw.parser;
 
 import java.util.List;
 
-import asw.dto.model.CitizenDB;
+import asw.DBManagement.model.CitizenDB;
 
 
 public interface ReadList {

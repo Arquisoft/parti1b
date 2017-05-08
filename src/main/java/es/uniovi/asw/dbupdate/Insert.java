@@ -3,7 +3,7 @@ package es.uniovi.asw.dbupdate;
 import java.sql.SQLException;
 import java.util.List;
 
-import asw.dto.model.CitizenDB;
+import asw.DBManagement.model.CitizenDB;
 
 
 public interface Insert {

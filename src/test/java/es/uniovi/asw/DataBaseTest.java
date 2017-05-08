@@ -16,7 +16,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import org.junit.Test;
 
-import asw.dto.model.CitizenDB;
+import asw.DBManagement.model.CitizenDB;
 import es.uniovi.asw.dbupdate.Database;
 import es.uniovi.asw.dbupdate.Insert;
 import es.uniovi.asw.dbupdate.InsertP;

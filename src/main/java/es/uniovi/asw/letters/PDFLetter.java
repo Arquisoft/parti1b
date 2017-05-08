@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.itextpdf.text.pdf.PdfWriter;
 
-import asw.dto.model.CitizenDB;
+import asw.DBManagement.model.CitizenDB;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;

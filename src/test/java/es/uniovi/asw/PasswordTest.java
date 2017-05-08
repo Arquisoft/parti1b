@@ -8,7 +8,7 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import asw.dto.model.CitizenDB;
+import asw.DBManagement.model.CitizenDB;
 import es.uniovi.asw.parser.GenerationPassword;
 
 

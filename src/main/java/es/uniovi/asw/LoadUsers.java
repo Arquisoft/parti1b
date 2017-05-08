@@ -1,6 +1,6 @@
 package es.uniovi.asw;
 
-import asw.dto.model.CitizenDB;
+import asw.DBManagement.model.CitizenDB;
 import es.uniovi.asw.parser.RList;
 import es.uniovi.asw.parser.RListExcel;
 

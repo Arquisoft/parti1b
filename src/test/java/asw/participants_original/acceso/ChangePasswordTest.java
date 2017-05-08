@@ -1,7 +1,7 @@
 package asw.participants_original.acceso;
 
 import asw.Application;
-import asw.participants.acceso.ChangePassword;
+import asw.participants.changeInfo.ChangePassword;
 
 import org.junit.After;
 import org.junit.Before;
