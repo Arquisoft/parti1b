@@ -1,0 +1,17 @@
+Tue May 09 23:05:16 CEST 2017 - El campo birthday esta vacio.
+Tue May 09 23:05:16 CEST 2017 - El mail esta vacio.
+Tue May 09 23:05:16 CEST 2017 - El mail no tiene el formato correcto.
+Tue May 09 23:05:16 CEST 2017 - El mail no tiene el formato correcto.
+Tue May 09 23:05:16 CEST 2017 - El mail no tiene el formato correcto.
+Tue May 09 23:05:16 CEST 2017 - El mail no tiene el formato correcto.
+Tue May 09 23:05:16 CEST 2017 - El mail no tiene el formato correcto.
+Tue May 09 23:05:17 CEST 2017 - El mail no tiene el formato correcto.
+Tue May 09 23:05:17 CEST 2017 - El mail no tiene el formato correcto.
+Tue May 09 23:05:17 CEST 2017 - El campo birthday esta vacio.
+Tue May 09 23:05:17 CEST 2017 - El dni no tiene el formato correcto.
+Tue May 09 23:05:17 CEST 2017 - El dni esta vacio.
+Tue May 09 23:05:17 CEST 2017 - El dni no tiene el formato correcto.
+Tue May 09 23:05:17 CEST 2017 - El dni no tiene el formato correcto.
+Tue May 09 23:05:17 CEST 2017 - El dni no tiene el formato correcto.
+Tue May 09 23:05:17 CEST 2017 - El dni no tiene el formato correcto.
+Tue May 09 23:05:17 CEST 2017 - Test de prueba para el log

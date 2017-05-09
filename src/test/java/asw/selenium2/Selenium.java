@@ -36,7 +36,7 @@ public class Selenium {
 	@Test
 	public void prueba01() throws Exception {
 		driver.get(baseUrl);
-		SeleniumUtils.EsperaCargaPagina(driver, "id", "login", 25);
+		SeleniumUtils.EsperaCargaPagina(driver, "id", "loguearse", 25);
 		driver.findElement(By.id("email")).clear();
 		driver.findElement(By.id("email")).sendKeys("nombre2@gmail.com");
 		driver.findElement(By.id("password")).clear();

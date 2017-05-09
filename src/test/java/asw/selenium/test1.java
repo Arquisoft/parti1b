@@ -39,13 +39,11 @@ public class test1 {
     driver.findElement(By.name("email")).sendKeys("nakamura@gmail.com");
     driver.findElement(By.name("password")).clear();
     driver.findElement(By.name("password")).sendKeys("123456");
-    driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
     driver.findElement(By.id("logearse")).click();
     
-    String texto = "USUARIO SIN PRIVILEGIOS";
+    String texto = "Página de administrador";
     SeleniumUtils.textoPresentePagina(driver, texto);
     
-   
   }
   
   @Test
@@ -55,10 +53,9 @@ public class test1 {
     driver.findElement(By.name("email")).sendKeys("valduvieco@gmail.com");
     driver.findElement(By.name("password")).clear();
     driver.findElement(By.name("password")).sendKeys("123456");
-    driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
     driver.findElement(By.id("logearse")).click();
     
-    String texto = "Popularidad de las sugerencias";
+    String texto = "Página de usuario";
     SeleniumUtils.textoPresentePagina(driver, texto);
     
    
@@ -70,10 +67,9 @@ public class test1 {
     driver.findElement(By.name("email")).sendKeys("paco@gmail.com");
     driver.findElement(By.name("password")).clear();
     driver.findElement(By.name("password")).sendKeys("123456");
-    driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
     driver.findElement(By.id("logearse")).click();
     
-    String texto = "Error 404";
+    String texto = "Página de error";
     SeleniumUtils.textoPresentePagina(driver, texto);
     
   }
