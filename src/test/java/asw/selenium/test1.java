@@ -1,6 +1,5 @@
 package asw.selenium;
 
-import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -19,12 +18,9 @@ import asw.util.SeleniumUtils;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebIntegrationTest(value = "server.port=8090")
-//@SeleniumTest(driver = FirefoxDriver.class, baseUrl = "http://localhost:8090")
-
 public class test1 {
   private WebDriver driver;
   private String baseUrl;
-  private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
 
   @Before
@@ -80,8 +76,6 @@ public class test1 {
     String texto = "Error 404";
     SeleniumUtils.textoPresentePagina(driver, texto);
     
-   
-    
   }
   
   @After
@@ -92,37 +86,5 @@ public class test1 {
       fail(verificationErrorString);
     }
   }
-
-  private boolean isElementPresent(By by) {
-    try {
-      driver.findElement(by);
-      return true;
-    } catch (NoSuchElementException e) {
-      return false;
-    }
-  }
-
-  private boolean isAlertPresent() {
-    try {
-      driver.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
-      return false;
-    }
-  }
-
-  private String closeAlertAndGetItsText() {
-    try {
-      Alert alert = driver.switchTo().alert();
-      String alertText = alert.getText();
-      if (acceptNextAlert) {
-        alert.accept();
-      } else {
-        alert.dismiss();
-      }
-      return alertText;
-    } finally {
-      acceptNextAlert = true;
-    }
-  }
+  
 }

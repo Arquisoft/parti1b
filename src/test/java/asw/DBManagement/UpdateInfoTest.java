@@ -1,10 +1,10 @@
 package asw.DBManagement;
 
 import asw.Application;
-import asw.DBManagement.DBManagementParticipants.GetParticipant;
+import asw.DBManagement.DBManagementParticipants.impl.UpdateInfoDB;
 import asw.DBManagement.model.CitizenDB;
 import asw.DBManagement.repository.CitizenDBRepository;
-import asw.participants.citizenInfo.ParticipantsLogin;
+import asw.participants.changeInfo.ChangePassword;
 
 import org.junit.After;
 import org.junit.Before;
@@ -21,22 +21,21 @@ import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 @Transactional
-public class GetParticipantTest {
+public class UpdateInfoTest {
+
+    @Autowired
+    private UpdateInfoDB updateInfo;
 
     @Autowired
     private CitizenDBRepository repository;
 
-    @Autowired
-    private GetParticipant getParticipant;
-
     private CitizenDB johnDoe;
 
-    private ParticipantsLogin johnDoeLogin;
 
+    private ChangePassword changePassword;
 
     @Before
     public void setUp() throws Exception {
@@ -45,8 +44,8 @@ public class GetParticipantTest {
         try {
             bornDate = new SimpleDateFormat("yyyy-MM-dd").parse("1970-01-01");
             johnDoe = new CitizenDB("John", "Doe", "john@doe.net", bornDate, "Phobos", "Martian", "123456789", "CIUDADANO");
-            johnDoeLogin = new ParticipantsLogin(johnDoe.getMail(),johnDoe.getPassword());
             repository.save(johnDoe);
+            changePassword = new ChangePassword(johnDoe.getMail(),johnDoe.getPassword(),"newPassword");
 
         } catch (ParseException e) {
 
@@ -60,14 +59,16 @@ public class GetParticipantTest {
     }
 
     @Test
-    public void getCiudadano() throws Exception {
+    public void updateCitizen() throws Exception {
         assertThat(johnDoe).isNotNull();
-        assertThat(getParticipant.getCiudadano(johnDoe.getMail())).isNotNull();
+        assertThat(updateInfo.UpdateCitizen(johnDoe)).isTrue();
     }
 
     @Test
-    public void getCiudadano1() throws Exception {
+    public void updateCitizen1() throws Exception {
         assertThat(johnDoe).isNotNull();
-        assertThat(getParticipant.getCiudadano(johnDoeLogin)).isNotNull();
+        assertThat(updateInfo.UpdateCitizen(changePassword)).isNotNull();
+
     }
+
 }
