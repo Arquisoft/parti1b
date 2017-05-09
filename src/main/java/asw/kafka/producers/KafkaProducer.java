@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import asw.DBManagement.model.Comment;
 import asw.DBManagement.model.Suggestion;
+import asw.DBManagement.model.VoteSuggestion;
 import asw.kafka.listeners.KafkaTopics;
 
 import org.apache.log4j.Logger;
@@ -31,9 +32,6 @@ public class KafkaProducer {
     @Autowired
     private ObjectMapper mapper;
 
-  
-
-
     public void sendNewSuggestion(Suggestion suggestion) {
         String sugerenciaJSON = "";
        suggestion.setCitizenDB(null);
@@ -54,6 +52,7 @@ public class KafkaProducer {
         String sugerenciaJSON = "";
        suggestion.setCitizenDB(null);
        suggestion.setComments(new ArrayList<Comment>());
+       suggestion.setVoteSuggestions(new ArrayList<VoteSuggestion>());
 
         try {
             sugerenciaJSON = mapper.writeValueAsString(suggestion);
