@@ -53,6 +53,7 @@ public class CiudadanoTest {
         password = "password";
 
         johnDoe = new CitizenDB(nombre, apellidos, email, bornDate, residencia, nacionalidad, dni, "ADMIN");
+        johnDoe.setPassword(password);
     }
 
     @After

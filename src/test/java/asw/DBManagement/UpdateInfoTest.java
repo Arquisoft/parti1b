@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertNotEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
@@ -44,6 +45,7 @@ public class UpdateInfoTest {
         try {
             bornDate = new SimpleDateFormat("yyyy-MM-dd").parse("1970-01-01");
             johnDoe = new CitizenDB("John", "Doe", "john@doe.net", bornDate, "Phobos", "Martian", "123456789", "CIUDADANO");
+            johnDoe.setPassword("password");
             repository.save(johnDoe);
             changePassword = new ChangePassword(johnDoe.getMail(),johnDoe.getPassword(),"newPassword");
 
@@ -67,7 +69,7 @@ public class UpdateInfoTest {
     @Test
     public void updateCitizen1() throws Exception {
         assertThat(johnDoe).isNotNull();
-        assertThat(updateInfo.UpdateCitizen(changePassword)).isNotNull();
+        assertNotEquals(null, updateInfo.UpdateCitizen(changePassword));
 
     }
 
