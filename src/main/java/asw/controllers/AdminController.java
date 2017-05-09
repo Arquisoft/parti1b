@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import asw.DBManagement.model.Comment;
 import asw.DBManagement.model.Suggestion;
+import asw.DBManagement.model.VoteComment;
+import asw.DBManagement.model.VoteSuggestion;
 import asw.DBManagement.services.CommentsService;
 import asw.DBManagement.services.SuggestionService;
+import asw.DBManagement.services.VoteCommentService;
+import asw.DBManagement.services.VoteSuggestionService;
 import asw.kafka.producers.KafkaProducer;
 
 @Scope("session")
@@ -31,6 +35,12 @@ public class AdminController {
 	@Autowired
 	private KafkaProducer kafkaProducer;
 		
+	@Autowired
+	private VoteCommentService voteCommentService;
+	
+	@Autowired
+	private VoteSuggestionService voteSuggestionService;
+	
 	private List<Suggestion> sugerencias = new ArrayList<Suggestion>();
 	
 	 @RequestMapping(value="/admin/home")
@@ -53,13 +63,23 @@ public class AdminController {
 	   @RequestMapping(value="/borrar")
 	    public String borrar(String id_sug,HttpSession session){
 		   Suggestion suggestion = suggestionService.findById(Long.parseLong(id_sug));
+		   List<VoteSuggestion> vs = voteSuggestionService.findBySuggestion(suggestion);
 		   
-		   for(Comment c : suggestion.getComments())
+		   for(Comment c : suggestion.getComments()){
+			   List<VoteComment> vc = voteCommentService.findByComment(c);
+			   for(VoteComment cc : vc){
+				   voteCommentService.deleteVoteComment(cc);
+			   }
 			   commentService.deleteComment(c);
+		   }
+		   
+		   for(VoteSuggestion v : vs){
+			   voteSuggestionService.deleteVoteSuggestion(v);
+		   }
 		   
 		   suggestionService.deleteSuggestion(suggestion);
 		   session.setAttribute("sugerencias", suggestionService.findAll());
-	    	this.kafkaProducer.sendDeleteSuggestion(suggestion);
+	       this.kafkaProducer.sendDeleteSuggestion(suggestion);
 		   return "admin/home";
 	    }
 	       	
@@ -80,4 +100,9 @@ public class AdminController {
        		return "admin/home";
     	}
 
+		@RequestMapping(value="/Admin/Sugerencias")
+		  public String goUserAdminHome2(HttpSession session){
+			  session.setAttribute("sugerencias",suggestionService.findAll());
+			  return "admin/home";
+		  }
 }
