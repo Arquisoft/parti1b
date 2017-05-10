@@ -1,4 +1,4 @@
-package asw.selenium;
+package asw.selenium2;
 
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -6,12 +6,16 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 import org.openqa.selenium.*;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import asw.Application;
 import asw.util.SeleniumUtils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-
+@ContextConfiguration(classes = Application.class)
+@SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class test1 {
   private WebDriver driver;
   private String baseUrl;

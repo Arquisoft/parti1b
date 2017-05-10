@@ -148,7 +148,8 @@ public class Selenium {
 		SeleniumUtils.textoPresentePagina(driver, "Titulo");
 		driver.findElement(By.linkText("Añadir Sugerencia")).click();
 		driver.findElement(By.linkText("Sugerencias")).click();
-		driver.findElement(By.id("titulo")).clear();
+		SeleniumUtils.textoPresentePagina(driver, "Titulo");
+
 	}
 
 	/**
@@ -183,6 +184,7 @@ public class Selenium {
 		driver.findElement(By.id("password")).sendKeys("123456");
 		driver.findElement(By.id("email")).clear();
 		driver.findElement(By.id("email")).sendKeys("valduvieco@gmail.com");
+		driver.findElement(By.id("logearse")).click();
 		driver.findElement(By.linkText("Sugerencia 4")).click();
 		SeleniumUtils.textoPresentePagina(driver, "Comentario 1");
 		driver.findElement(By.id("Si")).click();
@@ -288,28 +290,4 @@ public class Selenium {
 		driver.findElement(By.id("titulo")).sendKeys("Sugerencia 4");
 
 	}
-
-	/**
-	 * Borrar sugerencia
-	 *
-	 * @throws Exception
-	 */
-	@Test
-	public void prueba14() throws Exception {
-		driver.get(baseUrl + "/");
-		driver.findElement(By.xpath("//*[@id='logearse']"));
-		driver.findElement(By.id("email")).clear();
-		driver.findElement(By.id("email")).sendKeys("nakamura@gmail.com");
-		driver.findElement(By.id("password")).clear();
-		driver.findElement(By.id("password")).sendKeys("123456");
-		driver.findElement(By.id("logearse")).click();
-		SeleniumUtils.textoPresentePagina(driver, "Sugerencia 4");
-		driver.findElement(By.id("botonBorrar")).click();
-		Thread.sleep(6010);
-		SeleniumUtils.textoNoPresentePagina(driver, "Sugerencia 4");
-
-	}
-	
-	
-
 }
