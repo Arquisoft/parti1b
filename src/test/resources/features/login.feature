@@ -16,3 +16,8 @@ Scenario: LoginSinPrivilegios
 Given un usuario que va a la aplicacion
 When me logueo con usuario sin privilegios 
 Then me muestra el html usuario sin privilegios
+
+Scenario: LoginAdministrador
+Given un usuario que va a la aplicacion
+When me logueo con el administrador 
+Then me muestra la pagina de administrador
