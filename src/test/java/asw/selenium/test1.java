@@ -5,19 +5,13 @@ import org.junit.*;
 import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import asw.Application;
 import asw.util.SeleniumUtils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
-@WebIntegrationTest(value = "server.port=8090")
+
 public class test1 {
   private WebDriver driver;
   private String baseUrl;

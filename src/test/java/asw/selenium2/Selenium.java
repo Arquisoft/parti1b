@@ -35,13 +35,13 @@ public class Selenium {
 	 */
 	@Test
 	public void prueba01() throws Exception {
-		driver.get(baseUrl);
-		SeleniumUtils.EsperaCargaPagina(driver, "id", "loguearse", 25);
+		driver.get(baseUrl);//*[@id="logearse"]
+		driver.findElement(By.xpath("//*[@id='logearse']")).clear();
 		driver.findElement(By.id("email")).clear();
-		driver.findElement(By.id("email")).sendKeys("nombre2@gmail.com");
+		driver.findElement(By.id("email")).sendKeys("valduvieco@gmail.com");
 		driver.findElement(By.id("password")).clear();
-		driver.findElement(By.id("password")).sendKeys("password");
-		driver.findElement(By.id("login")).click();
+		driver.findElement(By.id("password")).sendKeys("123456");
+		driver.findElement(By.id("logearse")).click();
 		SeleniumUtils.textoPresentePagina(driver, "Titulo");
 		SeleniumUtils.textoPresentePagina(driver, "Contenido");
 	}
