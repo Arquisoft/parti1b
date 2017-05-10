@@ -200,16 +200,9 @@ public class Selenium {
 		driver.findElement(By.id("password")).clear();
 		driver.findElement(By.id("password")).sendKeys("123456");
 		driver.findElement(By.id("email")).clear();
-		driver.findElement(By.id("email")).sendKeys("nakamura@gmail.com");
+		driver.findElement(By.id("email")).sendKeys("valduvieco@gmail.com");
 		driver.findElement(By.id("logearse")).click();
-		driver.findElement(By.linkText("Añadir Sugerencia")).click();
-		driver.findElement(By.id("titulo")).clear();
-		driver.findElement(By.id("titulo")).sendKeys("Sugerencia 4");
-		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
 		driver.findElement(By.linkText("Sugerencia 4")).click();
-		driver.findElement(By.id("comentario")).clear();
-		driver.findElement(By.id("comentario")).sendKeys("Comentario 1");
-		driver.findElement(By.id("guardar")).click();
 		SeleniumUtils.textoPresentePagina(driver, "Comentario 1");
 		driver.findElement(By.id("No")).click();
 		SeleniumUtils.textoPresentePagina(driver, "1");
@@ -224,12 +217,12 @@ public class Selenium {
 	@Test
 	public void prueba10() throws Exception {
 		driver.get(baseUrl + "/");
-		SeleniumUtils.EsperaCargaPagina(driver, "id", "login", 25);
+		driver.findElement(By.xpath("//*[@id='logearse']"));
 		driver.findElement(By.id("email")).clear();
-		driver.findElement(By.id("email")).sendKeys("admin@gmail.com");
+		driver.findElement(By.id("email")).sendKeys("nakamura@gmail.com");
 		driver.findElement(By.id("password")).clear();
-		driver.findElement(By.id("password")).sendKeys("password");
-		driver.findElement(By.id("login")).click();
+		driver.findElement(By.id("password")).sendKeys("123456");
+		driver.findElement(By.id("logearse")).click();
 		SeleniumUtils.textoPresentePagina(driver, "Editar");
 		SeleniumUtils.textoPresentePagina(driver, "Borrar");
 
@@ -243,12 +236,12 @@ public class Selenium {
 	@Test
 	public void prueba11() throws Exception {
 		driver.get(baseUrl + "/");
-		SeleniumUtils.EsperaCargaPagina(driver, "id", "login", 25);
+		driver.findElement(By.xpath("//*[@id='logearse']"));
 		driver.findElement(By.id("email")).clear();
 		driver.findElement(By.id("email")).sendKeys("admin@gmail.com");
 		driver.findElement(By.id("password")).clear();
 		driver.findElement(By.id("password")).sendKeys("pass");
-		driver.findElement(By.id("login")).click();
+		driver.findElement(By.id("logearse")).click();
 		SeleniumUtils.textoPresentePagina(driver, "Error");
 		SeleniumUtils.textoPresentePagina(driver,
 				"Se ha producido algún error, por favor contacte con un administrador");
@@ -263,12 +256,12 @@ public class Selenium {
 	@Test
 	public void prueba12() throws Exception {
 		driver.get(baseUrl + "/");
-		SeleniumUtils.EsperaCargaPagina(driver, "id", "login", 25);
+		driver.findElement(By.xpath("//*[@id='logearse']"));
 		driver.findElement(By.id("email")).clear();
-		driver.findElement(By.id("email")).sendKeys("admin@gmail.com");
+		driver.findElement(By.id("email")).sendKeys("nakamura@gmail.com");
 		driver.findElement(By.id("password")).clear();
-		driver.findElement(By.id("password")).sendKeys("password");
-		driver.findElement(By.id("login")).click();
+		driver.findElement(By.id("password")).sendKeys("123456");
+		driver.findElement(By.id("logearse")).click();
 		SeleniumUtils.textoPresentePagina(driver, "Titulo");
 		driver.findElement(By.linkText("Cerrar Sesion")).click();
 		driver.get(baseUrl + "/cerrarSesion");
@@ -277,44 +270,46 @@ public class Selenium {
 	
 
 	/**
-	 * Borrar sugerencia
+	 * Editar sugerencia
 	 *
 	 * @throws Exception
 	 */
 	@Test
 	public void prueba13() throws Exception {
 		driver.get(baseUrl + "/");
-		SeleniumUtils.EsperaCargaPagina(driver, "id", "login", 25);
+		driver.findElement(By.xpath("//*[@id='logearse']"));
 		driver.findElement(By.id("email")).clear();
-		driver.findElement(By.id("email")).sendKeys("admin@gmail.com");
+		driver.findElement(By.id("email")).sendKeys("nakamura@gmail.com");
 		driver.findElement(By.id("password")).clear();
-		driver.findElement(By.id("password")).sendKeys("password");
-		driver.findElement(By.id("login")).click();
-		SeleniumUtils.textoPresentePagina(driver, "Sugerencia2");
-		driver.findElement(By.id("botonBorrar")).click();
-//		SeleniumUtils.textoNoPresentePagina(driver, "Sugerencia2");
+		driver.findElement(By.id("password")).sendKeys("123456");
+		driver.findElement(By.id("logearse")).click();
+		driver.findElement(By.id("botonEditar")).click();
+		driver.findElement(By.id("titulo")).clear();
+		driver.findElement(By.id("titulo")).sendKeys("Sugerencia 4");
 
 	}
-	
+
 	/**
-	 * Editar sugerencia
+	 * Borrar sugerencia
 	 *
 	 * @throws Exception
 	 */
 	@Test
 	public void prueba14() throws Exception {
 		driver.get(baseUrl + "/");
-		SeleniumUtils.EsperaCargaPagina(driver, "id", "login", 25);
+		driver.findElement(By.xpath("//*[@id='logearse']"));
 		driver.findElement(By.id("email")).clear();
-		driver.findElement(By.id("email")).sendKeys("admin@gmail.com");
+		driver.findElement(By.id("email")).sendKeys("nakamura@gmail.com");
 		driver.findElement(By.id("password")).clear();
-		driver.findElement(By.id("password")).sendKeys("password");
-		driver.findElement(By.id("login")).click();
-		driver.findElement(By.id("botonEditar")).click();
-		driver.findElement(By.id("titulo")).clear();
-		driver.findElement(By.id("titulo")).sendKeys("Sugerencia 4");
+		driver.findElement(By.id("password")).sendKeys("123456");
+		driver.findElement(By.id("logearse")).click();
+		SeleniumUtils.textoPresentePagina(driver, "Sugerencia 4");
+		driver.findElement(By.id("botonBorrar")).click();
+		Thread.sleep(6010);
+		SeleniumUtils.textoNoPresentePagina(driver, "Sugerencia 4");
 
 	}
+	
 	
 
 }
