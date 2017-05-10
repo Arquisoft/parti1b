@@ -8,12 +8,17 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.IntegrationTest;
+import org.springframework.boot.test.SpringApplicationContextLoader;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.util.Assert;
 import org.springframework.web.context.WebApplicationContext;
+
+import asw.Application;
 import asw.util.SeleniumUtils;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -22,8 +27,10 @@ import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-
+@ContextConfiguration(classes=Application.class, loader=SpringApplicationContextLoader.class)
+@IntegrationTest
 @WebAppConfiguration
 public class loginStep{
 
@@ -61,8 +68,8 @@ public class loginStep{
   
   @Given("^un usuario que va a la aplicacion$")
   public void un_usuario_que_va_a_la_aplicasao() throws Throwable {
-	  //driver = new HtmlUnitDriver();
-	  driver =new  FirefoxDriver();
+	  driver = new HtmlUnitDriver();
+	  //driver =new  FirefoxDriver();
 	
 	  assertNotNull(driver);
 	  
@@ -72,7 +79,7 @@ public class loginStep{
   @When("^me logueo con usuario privilegiado$")
   public void me_logueo_con_usuario_privilegiado() throws Throwable 
   {
-	  driver.findElement(By.id("email")).sendKeys("valduvieco@gmail.com");
+	  driver.findElement(By.id("email")).sendKeys("morollon@gmail.com");
       driver.findElement(By.id("password")).sendKeys("123456");
       driver.findElement(By.id("logearse")).click();
       //logueado.
@@ -80,6 +87,7 @@ public class loginStep{
 
   @Then("^me muestra el html usuario privilegiado$")
   public void me_muestra_el_html_usuario_privilegiado() throws Throwable {
+	  
 	  String texto = "Popularidad de las sugerencias";
 	    SeleniumUtils.textoPresentePagina(driver, texto);
 	  
@@ -87,7 +95,7 @@ public class loginStep{
   
   @When("^me logueo con usuario sin privilegios$")
   public void me_logueo_con_usuario_sin_privilegios() throws Throwable {
-	  driver.findElement(By.id("email")).sendKeys("nakamura@gmail.com");
+	  driver.findElement(By.id("email")).sendKeys("valduvieco@gmail.com");
       driver.findElement(By.id("password")).sendKeys("123456");
       driver.findElement(By.id("logearse")).click();
       //logueado
@@ -97,9 +105,21 @@ public class loginStep{
   @Then("^me muestra el html usuario sin privilegios$")
   public void me_muestra_el_html_usuario_sin_privilegios() throws Throwable {
 	  
-	  String texto = "USUARIO SIN PRIVILEGIOS";
+	  String texto = "Página de usuario";
 	    SeleniumUtils.textoPresentePagina(driver, texto);
   }
-
+  @When("^me logueo con el administrador$")
+  public void me_logueo_con_el_administrador() throws Throwable {
+	  driver.findElement(By.id("email")).sendKeys("nakamura@gmail.com");
+      driver.findElement(By.id("password")).sendKeys("123456");
+      driver.findElement(By.id("logearse")).click();
+      //logueado
+  }
+  @Then("^me muestra la pagina de administrador$")
+  public void me_muestra_la_pagina_de_administrador () throws Throwable {
+	  
+	  String texto = "Página de administrador";
+	    SeleniumUtils.textoPresentePagina(driver, texto);
+  }
 
 }
