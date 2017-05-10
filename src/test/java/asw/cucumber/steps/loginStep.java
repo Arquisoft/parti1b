@@ -68,8 +68,8 @@ public class loginStep{
   
   @Given("^un usuario que va a la aplicacion$")
   public void un_usuario_que_va_a_la_aplicasao() throws Throwable {
-	  //driver = new HtmlUnitDriver();
-	  driver =new  FirefoxDriver();
+	  driver = new HtmlUnitDriver();
+	  //driver =new  FirefoxDriver();
 	
 	  assertNotNull(driver);
 	  
