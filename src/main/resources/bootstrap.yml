@@ -3,5 +3,5 @@ spring:
         stream:
             kafka:
                 binder:
-                    brokers: ec2-52-16-85-73.eu-west-1.compute.amazonaws.com
-                    zk-nodes: ec2-52-16-85-73.eu-west-1.compute.amazonaws.com
+                    brokers: 34.253.47.34
+                    zk-nodes: 34.253.47.34

@@ -39,7 +39,7 @@ public class KafkaListenerFactory {
     @Bean
     public Map<String, Object> consumerConfigs() {
         Map<String, Object> props = new HashMap<>();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "ec2-52-16-85-73.eu-west-1.compute.amazonaws.com:9092");
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "34.253.47.34:9092");
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
         props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "100");
         props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, "15000");
